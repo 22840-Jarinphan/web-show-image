@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>แกลเลอรีรูปภาพของฉัน</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: linear-gradient(135deg, #eef7ff, #f8fbff);
+            color: #333;
+        }
+
+        /* ส่วนหัว */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            color: #1769aa;
+            margin-bottom: 12px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        /* แกลเลอรี */
+        .gallery {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* การ์ด */
+        .card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+        }
+
+        /* รูปภาพ */
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: 0.4s;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ข้อความ */
+        .content {
+            padding: 20px;
+        }
+
+        .content h2 {
+            font-size: 22px;
+            color: #1769aa;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* ส่วนท้าย */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            background: #1769aa;
+            color: white;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        /* รองรับแท็บเล็ต */
+        @media (max-width: 900px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* รองรับมือถือ */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .card img {
+                height: 230px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ส่วนหัว -->
+    <header>
+        <h1>📷 แกลเลอรีรูปภาพของฉัน</h1>
+        <p>รวมภาพที่ฉันชื่นชอบ 3 รูป</p>
+    </header>
+
+
+    <!-- แกลเลอรีรูปภาพ -->
+    <section class="gallery">
+
+        <!-- รูปที่ 1 -->
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/f4/33/c2/f433c233c0f4e6680a27bed75d38b3dc.jpg" alt="รูปภาพที่ 1">
+
+            <div class="content">
+                <h2>ภาพที่ 1</h2>
+                <p>
+                    ภาพที่ฉันชื่นชอบและต้องการนำมาแสดง
+                    พร้อมคำอธิบายสั้น ๆ เกี่ยวกับรูปภาพ
+                </p>
+            </div>
+        </div>
+
+
+        <!-- รูปที่ 2 -->
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/db/c1/16/dbc116a8f8a950d3b437613dd6b5db49.jpg" alt="รูปภาพที่ 2">
+
+            <div class="content">
+                <h2>ภาพที่ 2</h2>
+                <p>
+                    ภาพอีกหนึ่งภาพที่มีความหมาย
+                    พร้อมคำอธิบายเกี่ยวกับภาพนี้
+                </p>
+            </div>
+        </div>
+
+
+        <!-- รูปที่ 3 -->
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/ce/2f/9c/ce2f9cdad2adbe2c0b6948f8b1ef42ce.jpg" alt="รูปภาพที่ 3">
+
+            <div class="content">
+                <h2>ภาพที่ 3</h2>
+                <p>
+                    ภาพที่สามจากแกลเลอรี
+                    สามารถเปลี่ยนเป็นภาพในหัวข้อที่สนใจได้
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ส่วนท้าย -->
+    <footer>
+        <p>© 2026 แกลเลอรีรูปภาพของฉัน</p>
+        <p>สร้างสรรค์โดยนักเรียน</p>
+    </footer>
+
+</body>
+</html>
