@@ -15,8 +15,23 @@
 
         body {
             font-family: "Segoe UI", Tahoma, sans-serif;
-            background: linear-gradient(135deg, #eef7ff, #f8fbff);
+            background: linear-gradient(135deg, #f44336, #2196f3); /* พื้นหลังสีแดงฟ้า */
+            background-size: 400% 400%; /* ขนาดพื้นหลังเพื่อเคลื่อนไหว */
             color: #333;
+            animation: gradientAnimation 10s ease infinite; /* แอนิเมชันพื้นหลังเคลื่อนไหว */
+        }
+
+        /* แอนิเมชันสำหรับพื้นหลัง */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* ส่วนหัว */
@@ -53,6 +68,21 @@
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
             transition: 0.3s;
+            border: 5px solid transparent; /* ขอบการ์ดโปร่งใส */
+            animation: borderAnimation 5s infinite; /* แอนิเมชันขอบการ์ด */
+        }
+
+        /* แอนิเมชันสำหรับขอบการ์ด */
+        @keyframes borderAnimation {
+            0% {
+                border-color: #f44336; /* สีแดง */
+            }
+            50% {
+                border-color: #2196f3; /* สีฟ้า */
+            }
+            100% {
+                border-color: #f44336; /* สีแดง */
+            }
         }
 
         .card:hover {
@@ -90,6 +120,25 @@
             color: #666;
         }
 
+        /* อิโมจิเคลื่อนไหว */
+        .emoji {
+            position: fixed;
+            font-size: 20px;
+            animation: emojiAnimation 5s infinite;
+        }
+
+        @keyframes emojiAnimation {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(20px, 20px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
         /* ส่วนท้าย */
         footer {
             text-align: center;
@@ -101,6 +150,7 @@
 
         footer p {
             margin: 5px;
+            font-size: 15px;
         }
 
         /* รองรับแท็บเล็ต */
@@ -146,8 +196,7 @@
             <div class="content">
                 <h2>ภาพที่ 1</h2>
                 <p>
-                    ภาพที่ฉันชื่นชอบและต้องการนำมาแสดง
-                    พร้อมคำอธิบายสั้น ๆ เกี่ยวกับรูปภาพ
+                    เด็กผู้หญิงน่ารักผมสั้นสีชมพู อมยิ้มด้วยความเขินอาย
                 </p>
             </div>
         </div>
@@ -160,8 +209,7 @@
             <div class="content">
                 <h2>ภาพที่ 2</h2>
                 <p>
-                    ภาพอีกหนึ่งภาพที่มีความหมาย
-                    พร้อมคำอธิบายเกี่ยวกับภาพนี้
+                    เด็กชายผมสีน้ำตาล แววตาอ่อนโยน นั่งอ่านหนังสือใต้ต้นไม้
                 </p>
             </div>
         </div>
@@ -174,13 +222,20 @@
             <div class="content">
                 <h2>ภาพที่ 3</h2>
                 <p>
-                    ภาพที่สามจากแกลเลอรี
-                    สามารถเปลี่ยนเป็นภาพในหัวข้อที่สนใจได้
+                    เด็กสาวผมสีทองยาวสลวย ยืนรับลมเย็นบนยอดเขา
                 </p>
             </div>
         </div>
 
     </section>
+
+
+    <!-- อิโมจิเคลื่อนไหว -->
+    <div class="emoji" style="top: 10%; left: 10%;">😊</div>
+    <div class="emoji" style="top: 20%; left: 20%;">✨</div>
+    <div class="emoji" style="top: 30%; left: 30%;">❤️</div>
+    <div class="emoji" style="top: 40%; left: 40%;">💖</div>
+    <div class="emoji" style="top: 50%; left: 50%;">💙</div>
 
 
     <!-- ส่วนท้าย -->
