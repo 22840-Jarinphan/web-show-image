@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>แกลเลอรีรูปภาพของฉัน</title>
+    <title>Servamp แกลเลอรี</title>
 
     <style>
         * {
@@ -13,165 +13,195 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            background: linear-gradient(135deg, #f44336, #2196f3); /* พื้นหลังสีแดงฟ้า */
-            background-size: 400% 400%; /* ขนาดพื้นหลังเพื่อเคลื่อนไหว */
-            color: #333;
-            animation: gradientAnimation 10s ease infinite; /* แอนิเมชันพื้นหลังเคลื่อนไหว */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* แอนิเมชันสำหรับพื้นหลัง */
-        @keyframes gradientAnimation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        @keyframes rotateBorder {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.02) rotate(1deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes floatingEmojis {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(-30px) rotate(10deg); opacity: 0.5; }
+            100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: linear-gradient(-45deg, #FF6B6B, #4ECDC4, #FFEDD5, #6C5CE7);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            overflow-x: hidden; /* ป้องกันแถบเลื่อนแนวนอนจากอิโมจิ */
+            position: relative;
+        }
+
+        /* อิโมจิพื้นหลัง */
+        .background-emojis {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* อยู่หลังเนื้อหา */
+            pointer-events: none; /* ไม่ให้รบกวนการคลิก */
+        }
+
+        .background-emojis span {
+            position: absolute;
+            font-size: 30px;
+            animation: floatingEmojis 8s ease-in-out infinite;
         }
 
         /* ส่วนหัว */
         header {
             text-align: center;
-            padding: 60px 20px 40px;
+            padding: 70px 20px 50px;
+            background-color: rgba(255, 255, 255, 0.7); /* พื้นหลังโปร่งแสง */
+            backdrop-filter: blur(5px); /* เบลอพื้นหลัง */
+            border-bottom: 3px dashed #1769aa;
         }
 
         header h1 {
-            font-size: 42px;
-            color: #1769aa;
-            margin-bottom: 12px;
+            font-size: 48px;
+            color: #d63031;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         header p {
-            font-size: 18px;
-            color: #666;
+            font-size: 20px;
+            color: #2d3436;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 10px;
         }
 
         /* แกลเลอรี */
         .gallery {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 30px 20px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
+            gap: 30px;
         }
 
         /* การ์ด */
         .card {
-            background: white;
-            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.10);
-            transition: 0.3s;
-            border: 5px solid transparent; /* ขอบการ์ดโปร่งใส */
-            animation: borderAnimation 5s infinite; /* แอนิเมชันขอบการ์ด */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: 0.4s ease-out;
+            position: relative; /* สำหรับกรอบแบบเคลื่อนไหว */
         }
 
-        /* แอนิเมชันสำหรับขอบการ์ด */
-        @keyframes borderAnimation {
-            0% {
-                border-color: #f44336; /* สีแดง */
-            }
-            50% {
-                border-color: #2196f3; /* สีฟ้า */
-            }
-            100% {
-                border-color: #f44336; /* สีแดง */
-            }
+        /* กรอบแบบเคลื่อนไหว */
+        .card::before {
+            content: "✨🦇🌟🐺✨"; /* อิโมจิรอบกรอบ */
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 25px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+            animation: rotateBorder 0.5s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+            color: #d63031; /* เปลี่ยนสีเมื่อ hover */
         }
 
         /* รูปภาพ */
         .card img {
             width: 100%;
-            height: 250px;
+            height: 280px;
             object-fit: cover;
             display: block;
-            transition: 0.4s;
+            transition: 0.5s;
         }
 
         .card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         /* ข้อความ */
         .content {
-            padding: 20px;
+            padding: 25px;
         }
 
         .content h2 {
-            font-size: 22px;
+            font-size: 24px;
             color: #1769aa;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #fab1a0;
+            padding-bottom: 5px;
         }
 
         .content p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: #666;
-        }
-
-        /* อิโมจิเคลื่อนไหว */
-        .emoji {
-            position: fixed;
-            font-size: 20px;
-            animation: emojiAnimation 5s infinite;
-        }
-
-        @keyframes emojiAnimation {
-            0% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(20px, 20px);
-            }
-            100% {
-                transform: translate(0, 0);
-            }
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
         }
 
         /* ส่วนท้าย */
         footer {
             text-align: center;
-            padding: 40px 20px;
-            margin-top: 40px;
+            padding: 50px 20px;
+            margin-top: 50px;
             background: #1769aa;
             color: white;
+            border-top: 4px dashed #fab1a0;
         }
 
         footer p {
-            margin: 5px;
-            font-size: 15px;
+            margin: 8px;
+            font-size: 17px;
         }
 
         /* รองรับแท็บเล็ต */
         @media (max-width: 900px) {
             .gallery {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
         }
 
         /* รองรับมือถือ */
         @media (max-width: 600px) {
             header h1 {
-                font-size: 32px;
+                font-size: 36px;
+            }
+
+            header p {
+                font-size: 18px;
             }
 
             .gallery {
                 grid-template-columns: 1fr;
+                gap: 25px;
             }
 
             .card img {
-                height: 230px;
+                height: 250px;
             }
         }
     </style>
@@ -179,50 +209,63 @@
 
 <body>
 
+    <!-- อิโมจิพื้นหลังแบบเคลื่อนไหว -->
+    <div class="background-emojis">
+        <!-- ปรับเปลี่ยนอิโมจิและตำแหน่งตามต้องการ -->
+        <span style="top: 10%; left: 10%; animation-delay: 0s;">🦇</span>
+        <span style="top: 20%; left: 80%; animation-delay: 1s;">✨</span>
+        <span style="top: 40%; left: 30%; animation-delay: 2s;">🌟</span>
+        <span style="top: 60%; left: 90%; animation-delay: 3s;">🌕</span>
+        <span style="top: 70%; left: 15%; animation-delay: 4s;">🐺</span>
+        <span style="top: 85%; left: 60%; animation-delay: 5s;">💤</span>
+        <span style="top: 15%; left: 50%; animation-delay: 6s;">🔥</span>
+        <span style="top: 90%; left: 20%; animation-delay: 7s;">🖤</span>
+    </div>
+
     <!-- ส่วนหัว -->
     <header>
-        <h1>📷 แกลเลอรีรูปภาพของฉัน</h1>
-        <p>รวมภาพที่ฉันชื่นชอบ 3 รูป</p>
+        <h1>🎬 Servamp แกลเลอรี</h1>
+        <p>ตัวละครที่โดดเด่นจาก "เซอร์แวมพ์"</p>
     </header>
 
 
     <!-- แกลเลอรีรูปภาพ -->
     <section class="gallery">
 
-        <!-- รูปที่ 1 -->
+        <!-- รูปที่ 1: สึบากิ -->
         <div class="card">
-            <img src="https://i.pinimg.com/736x/f4/33/c2/f433c233c0f4e6680a27bed75d38b3dc.jpg" alt="รูปภาพที่ 1">
+            <img src="https://i.pinimg.com/736x/f4/33/c2/f433c233c0f4e6680a27bed75d38b3dc.jpg" alt="สึบากิ Servamp">
 
             <div class="content">
-                <h2>ภาพที่ 1</h2>
+                <h2>สึบากิ (Tsubaki)</h2>
                 <p>
-                    เด็กผู้หญิงน่ารักผมสั้นสีชมพู อมยิ้มด้วยความเขินอาย
+                    วายร้ายในช่วงต้นเรื่อง เซอร์แวมพ์หมายเลข 8 ผู้เป็นอมมนุษย์แห่งความเศร้าโศก (Melancholy) จากอนิเมะและมังงะเรื่อง Servamp (เซอร์แวมพ์)
                 </p>
             </div>
         </div>
 
 
-        <!-- รูปที่ 2 -->
+        <!-- รูปที่ 2: คุโระ -->
         <div class="card">
-            <img src="https://i.pinimg.com/736x/db/c1/16/dbc116a8f8a950d3b437613dd6b5db49.jpg" alt="รูปภาพที่ 2">
+            <img src="https://i.pinimg.com/736x/db/c1/16/dbc116a8f8a950d3b437613dd6b5db49.jpg" alt="คุโระ Servamp">
 
             <div class="content">
-                <h2>ภาพที่ 2</h2>
+                <h2>คุโระ (Kuro)</h2>
                 <p>
-                    เด็กชายผมสีน้ำตาล แววตาอ่อนโยน นั่งอ่านหนังสือใต้ต้นไม้
+                    หรือที่รู้จักในชื่อ สลีปปี้ แอช (Sleepy Ash) เป็นเซอร์แวมพ์พี่น้องคนโตและแข็งแกร่งที่สุดในบรรดาบาปทั้ง 7 ตัวละครเอก เขาเป็นแวมไพร์แห่งความเกียจคร้าน (Sloth) อนิเมะเรื่อง Servamp (เซอร์แวมพ์)
                 </p>
             </div>
         </div>
 
 
-        <!-- รูปที่ 3 -->
+        <!-- รูปที่ 3: วาตานุกิ ซาคุยะ -->
         <div class="card">
-            <img src="https://i.pinimg.com/736x/ce/2f/9c/ce2f9cdad2adbe2c0b6948f8b1ef42ce.jpg" alt="รูปภาพที่ 3">
+            <img src="https://i.pinimg.com/736x/ce/2f/9c/ce2f9cdad2adbe2c0b6948f8b1ef42ce.jpg" alt="วาตานุกิ ซาคุยะ Servamp">
 
             <div class="content">
-                <h2>ภาพที่ 3</h2>
+                <h2>วาตานุกิ ซาคุยะ (Sakuya Watanuki)</h2>
                 <p>
-                    เด็กสาวผมสีทองยาวสลวย ยืนรับลมเย็นบนยอดเขา
+                    เพื่อนร่วมชั้นของมาฮิรุผู้ซ่อนตัวตนที่แท้จริงในฐานะลูกสมุนแวมไพร์ของสึบากิ (Subaki) ผู้มีฉายาว่า "คนโกหก" จากอนิเมะและมังงะเรื่อง Servamp (เซอร์แวมพ์)
                 </p>
             </div>
         </div>
@@ -230,18 +273,10 @@
     </section>
 
 
-    <!-- อิโมจิเคลื่อนไหว -->
-    <div class="emoji" style="top: 10%; left: 10%;">😊</div>
-    <div class="emoji" style="top: 20%; left: 20%;">✨</div>
-    <div class="emoji" style="top: 30%; left: 30%;">❤️</div>
-    <div class="emoji" style="top: 40%; left: 40%;">💖</div>
-    <div class="emoji" style="top: 50%; left: 50%;">💙</div>
-
-
     <!-- ส่วนท้าย -->
     <footer>
-        <p>© 2026 แกลเลอรีรูปภาพของฉัน</p>
-        <p>สร้างสรรค์โดยนักเรียน</p>
+        <p>© 2026 Servamp แกลเลอรี</p>
+        <p>สร้างสรรค์โดยแฟนคลับนักเรียน</p>
     </footer>
 
 </body>
