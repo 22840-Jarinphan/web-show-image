@@ -1,1 +1,244 @@
+/* =========================================================
+   💗 ULTRA FANCY CLICKABLE NAVIGATION
+   เมนูตัวอักษรแบบอลังการ
+========================================================= */
 
+.navbar {
+    position: relative;
+    z-index: 1000;
+}
+
+/* กล่องเมนู */
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------
+   ✨ ตัวอักษรเมนู
+--------------------------------------------------------- */
+
+.nav-links a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 20px;
+    margin: 3px;
+
+    color: #fff;
+    text-decoration: none;
+
+    font-weight: 700;
+    font-size: 0.98rem;
+    letter-spacing: .3px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(216, 27, 96, .72),
+            rgba(229, 57, 53, .65)
+        );
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+        0 8px 25px rgba(216, 27, 96, .25),
+        inset 0 1px 0 rgba(255,255,255,.2);
+
+    overflow: hidden;
+
+    transition:
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        box-shadow .35s ease,
+        background .35s ease,
+        letter-spacing .35s ease;
+}
+
+
+/* ---------------------------------------------------------
+   🌸 แสงด้านใน
+--------------------------------------------------------- */
+
+.nav-links a::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,.45) 50%,
+            transparent 80%
+        );
+
+    transform: translateX(-120%);
+
+    transition: transform .7s ease;
+
+    pointer-events: none;
+}
+
+
+/* ---------------------------------------------------------
+   💗 เส้นเรืองแสงด้านล่าง
+--------------------------------------------------------- */
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 15%;
+    right: 15%;
+    bottom: 5px;
+
+    height: 3px;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff80ab,
+            #fff,
+            #ff5252
+        );
+
+    transform: scaleX(0);
+
+    transform-origin: center;
+
+    box-shadow:
+        0 0 8px #ff80ab,
+        0 0 18px rgba(255,255,255,.8);
+
+    transition: transform .35s ease;
+}
+
+
+/* ---------------------------------------------------------
+   ✨ HOVER
+--------------------------------------------------------- */
+
+.nav-links a:hover {
+    transform:
+        translateY(-5px)
+        scale(1.05);
+
+    letter-spacing: .8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #D81B60,
+            #E53935,
+            #EC407A
+        );
+
+    box-shadow:
+        0 12px 35px rgba(216,27,96,.45),
+        0 0 20px rgba(236,64,122,.35),
+        inset 0 1px 0 rgba(255,255,255,.3);
+}
+
+
+/* แสงวิ่งผ่าน */
+
+.nav-links a:hover::before {
+    transform: translateX(120%);
+}
+
+
+/* เส้นด้านล่าง */
+
+.nav-links a:hover::after {
+    transform: scaleX(1);
+}
+
+
+/* ---------------------------------------------------------
+   💥 ตอนกด
+--------------------------------------------------------- */
+
+.nav-links a:active {
+    transform:
+        translateY(1px)
+        scale(.94);
+
+    box-shadow:
+        0 3px 10px rgba(216,27,96,.3);
+}
+
+
+/* ---------------------------------------------------------
+   👑 เมนูหน้าปัจจุบัน
+--------------------------------------------------------- */
+
+.nav-links a.active {
+    background:
+        linear-gradient(
+            135deg,
+            #C2185B,
+            #D81B60,
+            #E53935
+        );
+
+    box-shadow:
+        0 10px 30px rgba(216,27,96,.4),
+        0 0 25px rgba(236,64,122,.35);
+}
+
+.nav-links a.active::after {
+    transform: scaleX(1);
+}
+
+
+/* =========================================================
+   ✦ ประกายรอบเมนู
+========================================================= */
+
+.nav-links a:hover {
+    animation: navGlow .8s ease-in-out infinite alternate;
+}
+
+@keyframes navGlow {
+
+    from {
+        filter: brightness(1);
+    }
+
+    to {
+        filter: brightness(1.15);
+    }
+}
+
+
+/* =========================================================
+   📱 MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .nav-links {
+        gap: 6px;
+    }
+
+    .nav-links a {
+        padding: 10px 14px;
+        font-size: .9rem;
+        border-radius: 15px;
+    }
+
+    .nav-links a:hover {
+        transform: translateY(-3px) scale(1.02);
+    }
+}
