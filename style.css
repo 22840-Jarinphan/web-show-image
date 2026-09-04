@@ -242,3 +242,606 @@
         transform: translateY(-3px) scale(1.02);
     }
 }
+
+/* =========================================================
+   ✨ SERVAMP GALLERY - EXTRA DECORATION
+========================================================= */
+
+/* ---------- Background Aurora ---------- */
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* แสงเบลอด้านหลัง */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: .25;
+    pointer-events: none;
+    z-index: -5;
+}
+
+body::before {
+    background: #ff4f91;
+    top: -180px;
+    left: -180px;
+    animation: auroraMove1 10s ease-in-out infinite alternate;
+}
+
+body::after {
+    background: #d81b60;
+    right: -200px;
+    bottom: -200px;
+    animation: auroraMove2 12s ease-in-out infinite alternate;
+}
+
+@keyframes auroraMove1 {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(150px, 100px) scale(1.3);
+    }
+}
+
+@keyframes auroraMove2 {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(-120px, -100px) scale(1.25);
+    }
+}
+
+
+/* =========================================================
+   ✨ FLOATING PARTICLES
+========================================================= */
+
+.gallery-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.gallery-particle {
+    position: absolute;
+    bottom: -50px;
+    font-size: 18px;
+    opacity: 0;
+    animation: particleFloat linear infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 20, 100, .5));
+}
+
+@keyframes particleFloat {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0deg)
+            scale(.6);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .8;
+    }
+
+    50% {
+        transform:
+            translateY(-50vh)
+            translateX(40px)
+            rotate(180deg)
+            scale(1);
+    }
+
+    90% {
+        opacity: .8;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            translateX(-50px)
+            rotate(360deg)
+            scale(.5);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   🌸 DECORATIVE CORNERS
+========================================================= */
+
+.gallery-decoration {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gallery-decoration.flower-left {
+    left: 4%;
+    top: 24%;
+    font-size: 30px;
+    animation: flowerFloat 4s ease-in-out infinite;
+}
+
+.gallery-decoration.flower-right {
+    right: 5%;
+    top: 34%;
+    font-size: 34px;
+    animation: flowerFloat 5s ease-in-out infinite reverse;
+}
+
+.gallery-decoration.star-one {
+    left: 8%;
+    top: 48%;
+    font-size: 25px;
+    animation: sparkle 2s infinite;
+}
+
+.gallery-decoration.star-two {
+    right: 9%;
+    top: 62%;
+    font-size: 24px;
+    animation: sparkle 3s infinite;
+}
+
+@keyframes flowerFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(8deg);
+    }
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: .3;
+        transform: scale(.7) rotate(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3) rotate(25deg);
+        filter: drop-shadow(0 0 12px #ff4081);
+    }
+}
+
+
+/* =========================================================
+   🎀 TITLE DECORATION
+========================================================= */
+
+.gallery-title {
+    position: relative;
+    text-align: center;
+}
+
+.gallery-title::before,
+.gallery-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ec407a,
+        #d81b60
+    );
+}
+
+.gallery-title::before {
+    right: calc(50% + 190px);
+}
+
+.gallery-title::after {
+    left: calc(50% + 190px);
+}
+
+.gallery-title .title-decoration {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    color: #d81b60;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   💗 CHARACTER CARD ENHANCEMENT
+========================================================= */
+
+.character-card {
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        box-shadow .5s ease;
+}
+
+
+/* แสงวิ่งผ่านการ์ด */
+
+.character-card::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -70%;
+    width: 50%;
+    height: 300%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.45),
+        transparent
+    );
+    transform: rotate(20deg);
+    transition: .8s;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.character-card:hover::before {
+    left: 130%;
+}
+
+
+/* Glow รอบการ์ด */
+
+.character-card::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+
+    background: linear-gradient(
+        120deg,
+        #ff4081,
+        #ffffff,
+        #d81b60,
+        #ff80ab,
+        #ff4081
+    );
+
+    background-size: 300% 300%;
+
+    opacity: 0;
+    z-index: -1;
+
+    animation: cardGlow 4s linear infinite;
+
+    transition: opacity .4s ease;
+}
+
+.character-card:hover::after {
+    opacity: 1;
+}
+
+@keyframes cardGlow {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* =========================================================
+   🖼️ CHARACTER IMAGE EFFECT
+========================================================= */
+
+.character-card img {
+    transition:
+        transform .7s cubic-bezier(.2,.8,.2,1),
+        filter .5s ease;
+}
+
+.character-card:hover img {
+    transform: scale(1.08);
+    filter:
+        brightness(1.08)
+        saturate(1.15);
+}
+
+
+/* =========================================================
+   💖 CARD HOVER
+========================================================= */
+
+.character-card:hover {
+    transform:
+        translateY(-15px)
+        scale(1.025);
+
+    box-shadow:
+        0 25px 60px rgba(216, 27, 96, .25),
+        0 0 35px rgba(236, 64, 122, .18);
+}
+
+
+/* =========================================================
+   🌸 FLOWER ON CARD
+========================================================= */
+
+.character-card .card-flower {
+    position: absolute;
+    right: 18px;
+    top: 255px;
+    font-size: 25px;
+    z-index: 12;
+
+    animation:
+        flowerSpin 5s linear infinite,
+        flowerPulse 2s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 0 7px rgba(236,64,122,.45));
+}
+
+@keyframes flowerSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes flowerPulse {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 4px rgba(236,64,122,.3));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 14px rgba(236,64,122,.8));
+    }
+}
+
+
+/* =========================================================
+   💎 CHARACTER NUMBER BADGE
+========================================================= */
+
+.character-number {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+
+    padding: 7px 14px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d81b60,
+            #ec407a
+        );
+
+    color: white;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    box-shadow:
+        0 6px 15px rgba(216,27,96,.35);
+
+    z-index: 20;
+
+    transition: .3s ease;
+}
+
+.character-card:hover .character-number {
+    transform: scale(1.08);
+    box-shadow:
+        0 8px 25px rgba(216,27,96,.55);
+}
+
+
+/* =========================================================
+   ✦ MINI SPARKLES
+========================================================= */
+
+.sparkle {
+    position: absolute;
+    color: #ff4081;
+    pointer-events: none;
+    animation: sparkleFloat 2s ease-in-out infinite;
+}
+
+.sparkle:nth-child(1) {
+    animation-delay: .3s;
+}
+
+.sparkle:nth-child(2) {
+    animation-delay: .8s;
+}
+
+.sparkle:nth-child(3) {
+    animation-delay: 1.2s;
+}
+
+@keyframes sparkleFloat {
+
+    0%,
+    100% {
+        opacity: .2;
+        transform: scale(.5) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3) rotate(90deg);
+    }
+}
+
+
+/* =========================================================
+   🌟 SECTION DIVIDER
+========================================================= */
+
+.gallery-divider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 25px auto 40px;
+}
+
+.gallery-divider span {
+    display: block;
+    height: 1px;
+    width: 100px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ec407a,
+            transparent
+        );
+}
+
+.gallery-divider b {
+    color: #d81b60;
+    font-size: 18px;
+
+    animation:
+        dividerPulse 2s ease-in-out infinite;
+}
+
+@keyframes dividerPulse {
+
+    0%,
+    100% {
+        transform: scale(.8);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   📱 MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .gallery-title::before,
+    .gallery-title::after {
+        display: none;
+    }
+
+    body::before,
+    body::after {
+        width: 300px;
+        height: 300px;
+    }
+
+    .gallery-decoration {
+        opacity: .5;
+    }
+
+}
+
+/* =========================================================
+   🌸 SERVAMP FLOATING PARTICLES
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const container = document.createElement("div");
+
+    container.className = "gallery-particles";
+
+    document.body.appendChild(container);
+
+
+    const particles = [
+        "🌸",
+        "🌸",
+        "💗",
+        "♡",
+        "♥",
+        "✦",
+        "✧",
+        "⋆",
+        "✨"
+    ];
+
+
+    for (let i = 0; i < 35; i++) {
+
+        const particle = document.createElement("span");
+
+        particle.className = "gallery-particle";
+
+        particle.textContent =
+            particles[
+                Math.floor(
+                    Math.random() * particles.length
+                )
+            ];
+
+
+        particle.style.left =
+            Math.random() * 100 + "%";
+
+
+        particle.style.fontSize =
+            (12 + Math.random() * 18) + "px";
+
+
+        particle.style.animationDuration =
+            (8 + Math.random() * 10) + "s";
+
+
+        particle.style.animationDelay =
+            Math.random() * 10 + "s";
+
+
+        container.appendChild(particle);
+    }
+
+});
