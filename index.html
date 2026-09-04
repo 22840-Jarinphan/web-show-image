@@ -4,283 +4,1437 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Servamp แกลเลอรี</title>
+    <title>Servamp แกลเลอรี | Pink Fantasy</title>
 
     <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        /* =====================================================
+           ROOT
+        ===================================================== */
+
+        :root {
+            --pink-deep: #ad1457;
+            --pink: #e91e63;
+            --pink-light: #f06292;
+            --pink-soft: #f8bbd0;
+            --pink-pale: #fce4ec;
+
+            --red: #e53935;
+            --red-dark: #b71c1c;
+
+            --dark: #351522;
+            --dark-soft: #57253a;
+
+            --white: #ffffff;
+
+            --shadow:
+                0 20px 50px rgba(136, 14, 79, 0.18);
         }
 
-        @keyframes rotateBorder {
-            0% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.02) rotate(1deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
 
-        @keyframes floatingEmojis {
-            0% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
-            50% { transform: translateY(-30px) rotate(10deg); opacity: 0.5; }
-            100% { transform: translateY(0px) rotate(0deg); opacity: 0.8; }
-        }
+        /* =====================================================
+           BODY
+        ===================================================== */
 
         body {
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            background: linear-gradient(-45deg, #FF6B6B, #4ECDC4, #FFEDD5, #6C5CE7);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #333;
-            overflow-x: hidden; /* ป้องกันแถบเลื่อนแนวนอนจากอิโมจิ */
-            position: relative;
+            font-family:
+                "Segoe UI",
+                "Noto Sans Thai",
+                Tahoma,
+                sans-serif;
+
+            color: var(--dark);
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(255, 255, 255, 0.85),
+                    transparent 25%
+                ),
+
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(255, 255, 255, 0.65),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #fce4ec,
+                    #f8bbd0,
+                    #ffcdd2,
+                    #f48fb1
+                );
+
+            background-size: 200% 200%;
+
+            animation: backgroundMove 15s ease infinite;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            cursor: none;
         }
 
-        /* อิโมจิพื้นหลัง */
-        .background-emojis {
+
+        @keyframes backgroundMove {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+
+        }
+
+
+        /* =====================================================
+           CUSTOM HEART CURSOR
+        ===================================================== */
+
+        .heart-cursor {
             position: fixed;
-            top: 0;
+
+            width: 22px;
+            height: 22px;
+
+            pointer-events: none;
+
+            z-index: 99999;
+
+            transform:
+                translate(-50%, -50%)
+                rotate(-45deg);
+
+            background:
+                var(--pink);
+
+            border-radius:
+                4px 0 4px 0;
+
+            box-shadow:
+                0 0 15px rgba(233, 30, 99, 0.55);
+
+            transition:
+                width 0.1s,
+                height 0.1s;
+        }
+
+
+        .heart-cursor::before,
+        .heart-cursor::after {
+            content: "";
+
+            position: absolute;
+
+            width: 22px;
+            height: 22px;
+
+            background: var(--pink);
+
+            border-radius: 50%;
+        }
+
+
+        .heart-cursor::before {
+            top: -11px;
             left: 0;
+        }
+
+
+        .heart-cursor::after {
+            top: 0;
+            left: 11px;
+        }
+
+
+        /* =====================================================
+           TRAIL HEART
+        ===================================================== */
+
+        .trail-heart {
+            position: fixed;
+
+            pointer-events: none;
+
+            z-index: 9998;
+
+            font-size: 15px;
+
+            animation:
+                trailFade 0.9s ease forwards;
+        }
+
+
+        @keyframes trailFade {
+
+            0% {
+                opacity: 0.9;
+                transform:
+                    translate(-50%, -50%)
+                    scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform:
+                    translate(-50%, -90px)
+                    scale(0.3)
+                    rotate(20deg);
+            }
+
+        }
+
+
+        /* =====================================================
+           CLICK PARTICLES
+        ===================================================== */
+
+        .click-particle {
+            position: fixed;
+
+            pointer-events: none;
+
+            z-index: 100000;
+
+            font-size: 22px;
+
+            animation:
+                clickBurst 1.2s ease-out forwards;
+        }
+
+
+        @keyframes clickBurst {
+
+            0% {
+                opacity: 1;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(0.4)
+                    rotate(0deg);
+            }
+
+            60% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    translate(
+                        calc(-50% + var(--x)),
+                        calc(-50% + var(--y))
+                    )
+                    scale(1.25)
+                    rotate(180deg);
+            }
+
+        }
+
+
+        /* =====================================================
+           FLOATING BACKGROUND
+        ===================================================== */
+
+        .background-emojis {
+
+            position: fixed;
+
+            inset: 0;
+
             width: 100%;
             height: 100%;
-            z-index: -1; /* อยู่หลังเนื้อหา */
-            pointer-events: none; /* ไม่ให้รบกวนการคลิก */
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 0;
         }
+
 
         .background-emojis span {
+
             position: absolute;
-            font-size: 30px;
-            animation: floatingEmojis 8s ease-in-out infinite;
+
+            font-size: 28px;
+
+            opacity: 0.35;
+
+            filter:
+                drop-shadow(
+                    0 0 8px rgba(255, 255, 255, 0.8)
+                );
+
+            animation:
+                floatingEmoji 8s ease-in-out infinite;
         }
 
-        /* ส่วนหัว */
-        header {
-            text-align: center;
-            padding: 70px 20px 50px;
-            background-color: rgba(255, 255, 255, 0.7); /* พื้นหลังโปร่งแสง */
-            backdrop-filter: blur(5px); /* เบลอพื้นหลัง */
-            border-bottom: 3px dashed #1769aa;
+
+        @keyframes floatingEmoji {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg)
+                    scale(1);
+
+                opacity: 0.2;
+            }
+
+            50% {
+                transform:
+                    translateY(-45px)
+                    rotate(15deg)
+                    scale(1.15);
+
+                opacity: 0.55;
+            }
+
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0deg)
+                    scale(1);
+
+                opacity: 0.2;
+            }
+
         }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+
+            position: relative;
+
+            z-index: 5;
+
+            text-align: center;
+
+            padding:
+                75px 20px 65px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.78),
+                    rgba(252, 228, 236, 0.72)
+                );
+
+            backdrop-filter:
+                blur(12px);
+
+            border-bottom:
+                3px solid rgba(233, 30, 99, 0.35);
+
+            box-shadow:
+                0 15px 40px rgba(136, 14, 79, 0.1);
+        }
+
+
+        header::before {
+
+            content: "🌸";
+
+            position: absolute;
+
+            left: 8%;
+
+            top: 35px;
+
+            font-size: 42px;
+
+            animation:
+                floatingEmoji 5s ease-in-out infinite;
+        }
+
+
+        header::after {
+
+            content: "🦇";
+
+            position: absolute;
+
+            right: 8%;
+
+            top: 45px;
+
+            font-size: 38px;
+
+            animation:
+                floatingEmoji 6s ease-in-out infinite;
+        }
+
+
+        /* =====================================================
+           TITLE DECORATION
+        ===================================================== */
+
+        .title-decoration {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+
+            color: var(--pink);
+        }
+
+
+        .title-decoration::before,
+        .title-decoration::after {
+
+            content: "";
+
+            width: 80px;
+
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--pink)
+                );
+        }
+
+
+        .title-decoration::after {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--pink),
+                    transparent
+                );
+        }
+
 
         header h1 {
-            font-size: 48px;
-            color: #d63031;
+
+            position: relative;
+
+            display: inline-block;
+
+            font-size:
+                clamp(32px, 5vw, 48px);
+
+            line-height: 1.25;
+
+            color:
+                var(--pink-deep);
+
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+
+            text-shadow:
+                2px 3px 10px
+                rgba(173, 20, 87, 0.2);
         }
+
+
+        header h1::after {
+
+            content: "♡";
+
+            position: absolute;
+
+            right: -35px;
+
+            top: -15px;
+
+            color: var(--red);
+
+            font-size: 25px;
+
+            animation:
+                heartBeat 1.5s infinite;
+        }
+
+
+        @keyframes heartBeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.35);
+            }
+
+        }
+
 
         header p {
-            font-size: 20px;
-            color: #2d3436;
-            background-color: rgba(255, 255, 255, 0.8);
+
             display: inline-block;
-            padding: 5px 15px;
-            border-radius: 10px;
+
+            font-size: 17px;
+
+            line-height: 1.7;
+
+            color: var(--dark-soft);
+
+            background:
+                rgba(255, 255, 255, 0.65);
+
+            border:
+                1px solid
+                rgba(233, 30, 99, 0.18);
+
+            padding:
+                9px 20px;
+
+            border-radius: 50px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(136, 14, 79, 0.08);
         }
 
-        /* แกลเลอรี */
+
+        /* =====================================================
+           GALLERY
+        ===================================================== */
+
         .gallery {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 30px 20px;
+
+            position: relative;
+
+            z-index: 2;
+
+            width:
+                min(1100px, calc(100% - 40px));
+
+            margin:
+                55px auto 0;
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 30px;
         }
 
-        /* การ์ด */
+
+        /* =====================================================
+           CARD
+        ===================================================== */
+
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
+
+            position: relative;
+
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: 0.4s ease-out;
-            position: relative; /* สำหรับกรอบแบบเคลื่อนไหว */
+
+            background:
+                rgba(255, 255, 255, 0.78);
+
+            backdrop-filter:
+                blur(10px);
+
+            border:
+                2px solid
+                rgba(233, 30, 99, 0.2);
+
+            border-radius: 28px;
+
+            box-shadow:
+                var(--shadow);
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
         }
 
-        /* กรอบแบบเคลื่อนไหว */
+
+        /* เส้นกรอบตกแต่ง */
+
         .card::before {
-            content: "✨🦇🌟🐺✨"; /* อิโมจิรอบกรอบ */
+
+            content: "";
+
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border-radius: 25px;
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.5);
+
+            inset: 8px;
+
+            border:
+                1px dashed
+                rgba(233, 30, 99, 0.3);
+
+            border-radius: 21px;
+
             pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
+
+            z-index: 3;
         }
+
+
+        /* แสงด้านบน */
+
+        .card::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 70%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.45),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left 0.7s ease;
+
+            pointer-events: none;
+
+            z-index: 4;
+        }
+
 
         .card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
-            animation: rotateBorder 0.5s ease;
+
+            transform:
+                translateY(-12px)
+                rotate(-0.5deg);
+
+            border-color:
+                rgba(233, 30, 99, 0.55);
+
+            box-shadow:
+                0 30px 65px
+                rgba(173, 20, 87, 0.25);
         }
 
-        .card:hover::before {
-            opacity: 1;
-            color: #d63031; /* เปลี่ยนสีเมื่อ hover */
+
+        .card:hover::after {
+
+            left: 130%;
         }
 
-        /* รูปภาพ */
+
+        /* =====================================================
+           IMAGE
+        ===================================================== */
+
         .card img {
+
             width: 100%;
+
             height: 280px;
+
             object-fit: cover;
+
             display: block;
-            transition: 0.5s;
+
+            transition:
+                transform 0.6s ease,
+                filter 0.6s ease;
         }
+
 
         .card:hover img {
+
             transform: scale(1.08);
+
+            filter:
+                saturate(1.12)
+                brightness(1.04);
         }
 
-        /* ข้อความ */
-        .content {
-            padding: 25px;
+
+        /* =====================================================
+           IMAGE TOP LABEL
+        ===================================================== */
+
+        .card-image {
+
+            position: relative;
+
+            overflow: hidden;
         }
+
+
+        .image-label {
+
+            position: absolute;
+
+            top: 18px;
+            left: 18px;
+
+            z-index: 5;
+
+            padding:
+                6px 12px;
+
+            background:
+                rgba(173, 20, 87, 0.82);
+
+            color: white;
+
+            border-radius: 30px;
+
+            font-size: 12px;
+
+            backdrop-filter:
+                blur(6px);
+
+            box-shadow:
+                0 5px 15px
+                rgba(0, 0, 0, 0.15);
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content {
+
+            position: relative;
+
+            padding:
+                27px 28px 30px;
+        }
+
+
+        .content::before {
+
+            content: "🌸";
+
+            position: absolute;
+
+            right: 18px;
+
+            top: 15px;
+
+            font-size: 25px;
+
+            opacity: 0.5;
+
+            animation:
+                floatingEmoji 4s ease-in-out infinite;
+        }
+
+
+        .number {
+
+            display: inline-block;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            color: var(--pink);
+
+            margin-bottom: 7px;
+        }
+
 
         .content h2 {
-            font-size: 24px;
-            color: #1769aa;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #fab1a0;
-            padding-bottom: 5px;
+
+            font-size:
+                clamp(20px, 2.5vw, 25px);
+
+            line-height: 1.4;
+
+            color:
+                var(--pink-deep);
+
+            margin-bottom: 13px;
+
+            padding-bottom: 10px;
+
+            border-bottom:
+                2px solid
+                var(--pink-soft);
         }
+
 
         .content p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #444;
+
+            font-size: 15px;
+
+            line-height: 1.9;
+
+            color: #573844;
+
+            padding-right: 5px;
         }
 
-        /* ส่วนท้าย */
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
         footer {
+
+            position: relative;
+
+            z-index: 3;
+
             text-align: center;
-            padding: 50px 20px;
-            margin-top: 50px;
-            background: #1769aa;
+
+            margin-top: 75px;
+
+            padding:
+                45px 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #880e4f,
+                    #ad1457,
+                    #c2185b
+                );
+
             color: white;
-            border-top: 4px dashed #fab1a0;
+
+            border-top:
+                4px solid
+                rgba(255, 255, 255, 0.25);
+
+            box-shadow:
+                0 -15px 40px
+                rgba(136, 14, 79, 0.18);
         }
+
+
+        footer::before {
+
+            content: "🌸  ♡  🌸  ♡  🌸";
+
+            display: block;
+
+            margin-bottom: 18px;
+
+            font-size: 20px;
+
+            letter-spacing: 8px;
+
+            opacity: 0.8;
+        }
+
 
         footer p {
+
             margin: 8px;
-            font-size: 17px;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            opacity: 0.95;
         }
 
-        /* รองรับแท็บเล็ต */
+
+        footer strong {
+
+            color: #fce4ec;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
         @media (max-width: 900px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+
+            body {
+                cursor: auto;
             }
+
+            .heart-cursor {
+                display: none;
+            }
+
+            .gallery {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                gap: 22px;
+            }
+
         }
 
-        /* รองรับมือถือ */
+
         @media (max-width: 600px) {
-            header h1 {
-                font-size: 36px;
+
+            header {
+
+                padding:
+                    55px 20px 45px;
             }
+
+
+            header::before,
+            header::after {
+
+                font-size: 25px;
+            }
+
+
+            header h1 {
+
+                font-size: 32px;
+            }
+
+
+            header h1::after {
+
+                right: -25px;
+
+                font-size: 20px;
+            }
+
 
             header p {
-                font-size: 18px;
+
+                font-size: 15px;
+
+                padding:
+                    8px 15px;
             }
+
 
             .gallery {
+
+                width:
+                    min(
+                        calc(100% - 28px),
+                        500px
+                    );
+
                 grid-template-columns: 1fr;
+
                 gap: 25px;
+
+                margin-top: 35px;
             }
 
+
             .card img {
+
                 height: 250px;
             }
+
+
+            .content {
+
+                padding:
+                    24px 24px 28px;
+            }
+
+
+            .content h2 {
+
+                font-size: 21px;
+            }
+
+
+            .content p {
+
+                font-size: 15px;
+
+                line-height: 1.85;
+            }
+
+
+            footer {
+
+                margin-top: 50px;
+
+                padding:
+                    38px 18px;
+            }
+
         }
+
+
+        /* =====================================================
+           REDUCE MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                scroll-behavior:
+                    auto !important;
+
+                transition-duration:
+                    0.01ms !important;
+            }
+
+        }
+
     </style>
 </head>
 
+
 <body>
 
-    <!-- อิโมจิพื้นหลังแบบเคลื่อนไหว -->
-    <div class="background-emojis">
-        <!-- ปรับเปลี่ยนอิโมจิและตำแหน่งตามต้องการ -->
-        <span style="top: 10%; left: 10%; animation-delay: 0s;">🦇</span>
-        <span style="top: 20%; left: 80%; animation-delay: 1s;">✨</span>
-        <span style="top: 40%; left: 30%; animation-delay: 2s;">🌟</span>
-        <span style="top: 60%; left: 90%; animation-delay: 3s;">🌕</span>
-        <span style="top: 70%; left: 15%; animation-delay: 4s;">🐺</span>
-        <span style="top: 85%; left: 60%; animation-delay: 5s;">💤</span>
-        <span style="top: 15%; left: 50%; animation-delay: 6s;">🔥</span>
-        <span style="top: 90%; left: 20%; animation-delay: 7s;">🖤</span>
+
+    <!-- =====================================================
+         CUSTOM CURSOR
+    ====================================================== -->
+
+    <div class="heart-cursor" id="heartCursor"></div>
+
+
+    <!-- =====================================================
+         BACKGROUND EMOJIS
+    ====================================================== -->
+
+    <div class="background-emojis" aria-hidden="true">
+
+        <span style="top: 8%; left: 8%; animation-delay: 0s;">🌸</span>
+
+        <span style="top: 18%; left: 82%; animation-delay: 1s;">💗</span>
+
+        <span style="top: 36%; left: 18%; animation-delay: 2s;">🌸</span>
+
+        <span style="top: 42%; left: 88%; animation-delay: 3s;">♡</span>
+
+        <span style="top: 58%; left: 7%; animation-delay: 4s;">💖</span>
+
+        <span style="top: 67%; left: 92%; animation-delay: 5s;">🌸</span>
+
+        <span style="top: 76%; left: 25%; animation-delay: 6s;">🦇</span>
+
+        <span style="top: 87%; left: 70%; animation-delay: 7s;">💗</span>
+
+        <span style="top: 28%; left: 48%; animation-delay: 2.5s;">✨</span>
+
+        <span style="top: 82%; left: 48%; animation-delay: 4.5s;">🌸</span>
+
     </div>
 
-    <!-- ส่วนหัว -->
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
     <header>
-        <h1>🎬 Servamp แกลเลอรี</h1>
-        <p>ตัวละครที่โดดเด่นจาก "เซอร์แวมพ์"</p>
+
+        <div class="title-decoration">
+            🌸
+            <span>♡</span>
+            🌸
+        </div>
+
+        <h1>
+            🎬 Servamp แกลเลอรี
+        </h1>
+
+        <p>
+            ตัวละครที่โดดเด่นจาก "เซอร์แวมพ์" 🦇
+        </p>
+
     </header>
 
 
-    <!-- แกลเลอรีรูปภาพ -->
+    <!-- =====================================================
+         GALLERY
+    ====================================================== -->
+
     <section class="gallery">
 
-        <!-- รูปที่ 1: สึบากิ -->
-        <div class="card">
-            <img src="https://i.pinimg.com/736x/f4/33/c2/f433c233c0f4e6680a27bed75d38b3dc.jpg" alt="สึบากิ Servamp">
+
+        <!-- CARD 01 -->
+
+        <article class="card">
+
+            <div class="card-image">
+
+                <span class="image-label">
+                    🌹 CHARACTER 01
+                </span>
+
+                <img
+                    src="https://i.pinimg.com/736x/f4/33/c2/f433c233c0f4e6680a27bed75d38b3dc.jpg"
+                    alt="สึบากิ Servamp"
+                >
+
+            </div>
+
 
             <div class="content">
-                <h2>สึบากิ (Tsubaki)</h2>
+
+                <span class="number">
+                    01 • SERVAMP
+                </span>
+
+                <h2>
+                    สึบากิ (Tsubaki)
+                </h2>
+
                 <p>
-                    วายร้ายในช่วงต้นเรื่อง เซอร์แวมพ์หมายเลข 8 ผู้เป็นอมมนุษย์แห่งความเศร้าโศก (Melancholy) จากอนิเมะและมังงะเรื่อง Servamp (เซอร์แวมพ์)
+                    วายร้ายในช่วงต้นเรื่อง
+                    เซอร์แวมพ์หมายเลข 8
+                    ผู้เป็นอมมนุษย์แห่งความเศร้าโศก
+                    (Melancholy)
+                    จากอนิเมะและมังงะเรื่อง Servamp
+                    (เซอร์แวมพ์)
                 </p>
+
             </div>
-        </div>
+
+        </article>
 
 
-        <!-- รูปที่ 2: คุโระ -->
-        <div class="card">
-            <img src="https://i.pinimg.com/736x/db/c1/16/dbc116a8f8a950d3b437613dd6b5db49.jpg" alt="คุโระ Servamp">
+        <!-- CARD 02 -->
+
+        <article class="card">
+
+            <div class="card-image">
+
+                <span class="image-label">
+                    🖤 CHARACTER 02
+                </span>
+
+                <img
+                    src="https://i.pinimg.com/736x/db/c1/16/dbc116a8f8a950d3b437613dd6b5db49.jpg"
+                    alt="คุโระ Servamp"
+                >
+
+            </div>
+
 
             <div class="content">
-                <h2>คุโระ (Kuro)</h2>
+
+                <span class="number">
+                    02 • SERVAMP
+                </span>
+
+                <h2>
+                    คุโระ (Kuro)
+                </h2>
+
                 <p>
-                    หรือที่รู้จักในชื่อ สลีปปี้ แอช (Sleepy Ash) เป็นเซอร์แวมพ์พี่น้องคนโตและแข็งแกร่งที่สุดในบรรดาบาปทั้ง 7 ตัวละครเอก เขาเป็นแวมไพร์แห่งความเกียจคร้าน (Sloth) อนิเมะเรื่อง Servamp (เซอร์แวมพ์)
+                    หรือที่รู้จักในชื่อ สลีปปี้ แอช
+                    (Sleepy Ash)
+                    เป็นเซอร์แวมพ์พี่น้องคนโต
+                    และแข็งแกร่งที่สุดในบรรดาบาปทั้ง 7
+                    ตัวละครเอกแห่งเรื่อง Servamp
                 </p>
+
             </div>
-        </div>
+
+        </article>
 
 
-        <!-- รูปที่ 3: วาตานุกิ ซาคุยะ -->
-        <div class="card">
-            <img src="https://i.pinimg.com/736x/ce/2f/9c/ce2f9cdad2adbe2c0b6948f8b1ef42ce.jpg" alt="วาตานุกิ ซาคุยะ Servamp">
+        <!-- CARD 03 -->
+
+        <article class="card">
+
+            <div class="card-image">
+
+                <span class="image-label">
+                    💗 CHARACTER 03
+                </span>
+
+                <img
+                    src="https://i.pinimg.com/736x/ce/2f/9c/ce2f9cdad2adbe2c0b6948f8b1ef42ce.jpg"
+                    alt="วาตานุกิ ซาคุยะ Servamp"
+                >
+
+            </div>
+
 
             <div class="content">
-                <h2>วาตานุกิ ซาคุยะ (Sakuya Watanuki)</h2>
+
+                <span class="number">
+                    03 • SERVAMP
+                </span>
+
+                <h2>
+                    วาตานุกิ ซาคุยะ
+                    (Sakuya Watanuki)
+                </h2>
+
                 <p>
-                    เพื่อนร่วมชั้นของมาฮิรุผู้ซ่อนตัวตนที่แท้จริงในฐานะลูกสมุนแวมไพร์ของสึบากิ (Subaki) ผู้มีฉายาว่า "คนโกหก" จากอนิเมะและมังงะเรื่อง Servamp (เซอร์แวมพ์)
+                    เพื่อนร่วมชั้นของมาฮิรุ
+                    ผู้ซ่อนตัวตนที่แท้จริง
+                    ในฐานะลูกสมุนแวมไพร์ของสึบากิ
+                    และมีฉายาว่า "คนโกหก"
                 </p>
+
             </div>
-        </div>
+
+        </article>
+
 
     </section>
 
 
-    <!-- ส่วนท้าย -->
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
     <footer>
-        <p>© 2026 Servamp แกลเลอรี</p>
-        <p>สร้างสรรค์โดยแฟนคลับนักเรียน</p>
+
+        <p>
+            <strong>🌸 © 2026 Servamp แกลเลอรี 🌸</strong>
+        </p>
+
+        <p>
+            สร้างสรรค์ด้วย ♡
+            สำหรับแฟนคลับนักเรียน
+        </p>
+
     </footer>
 
-    
-</script>
-    
+
+    <!-- =====================================================
+         JAVASCRIPT
+         หัวใจตามเมาส์ + คลิกแล้วกระจาย
+    ====================================================== -->
+
+    <script>
+
+        /* =================================================
+           CUSTOM HEART CURSOR
+        ================================================= */
+
+        const cursor =
+            document.getElementById("heartCursor");
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener("mousemove", function(event) {
+
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+
+            cursor.style.left = mouseX + "px";
+            cursor.style.top = mouseY + "px";
+
+        });
+
+
+        /* =================================================
+           HEART TRAIL
+        ================================================= */
+
+        let lastTrail = 0;
+
+        document.addEventListener("mousemove", function(event) {
+
+            const now = Date.now();
+
+            if (now - lastTrail < 90) {
+                return;
+            }
+
+            lastTrail = now;
+
+            const heart =
+                document.createElement("span");
+
+            heart.className = "trail-heart";
+
+            const symbols = [
+                "♡",
+                "💗",
+                "💖",
+                "🌸"
+            ];
+
+            heart.textContent =
+                symbols[
+                    Math.floor(
+                        Math.random() * symbols.length
+                    )
+                ];
+
+            heart.style.left =
+                event.clientX + "px";
+
+            heart.style.top =
+                event.clientY + "px";
+
+            document.body.appendChild(heart);
+
+            setTimeout(function() {
+
+                heart.remove();
+
+            }, 900);
+
+        });
+
+
+        /* =================================================
+           CLICK BURST
+        ================================================= */
+
+        document.addEventListener("click", function(event) {
+
+            const particles = [
+                "💗",
+                "💖",
+                "💕",
+                "♡",
+                "🌸",
+                "🌸",
+                "✨",
+                "💞"
+            ];
+
+
+            for (let i = 0; i < 14; i++) {
+
+                const particle =
+                    document.createElement("span");
+
+                particle.className =
+                    "click-particle";
+
+                particle.textContent =
+                    particles[
+                        Math.floor(
+                            Math.random() *
+                            particles.length
+                        )
+                    ];
+
+
+                particle.style.left =
+                    event.clientX + "px";
+
+                particle.style.top =
+                    event.clientY + "px";
+
+
+                const angle =
+                    Math.random() *
+                    Math.PI * 2;
+
+                const distance =
+                    60 +
+                    Math.random() * 120;
+
+
+                const x =
+                    Math.cos(angle) *
+                    distance;
+
+                const y =
+                    Math.sin(angle) *
+                    distance;
+
+
+                particle.style.setProperty(
+                    "--x",
+                    x + "px"
+                );
+
+                particle.style.setProperty(
+                    "--y",
+                    y + "px"
+                );
+
+
+                particle.style.animationDelay =
+                    (Math.random() * 0.15) + "s";
+
+
+                document.body.appendChild(
+                    particle
+                );
+
+
+                setTimeout(function() {
+
+                    particle.remove();
+
+                }, 1400);
+
+            }
+
+        });
+
+
+        /* =================================================
+           CARD CLICK EFFECT
+        ================================================= */
+
+        document.querySelectorAll(".card")
+            .forEach(function(card) {
+
+                card.addEventListener("click", function(event) {
+
+                    card.style.transform =
+                        "translateY(-16px) scale(1.015)";
+
+                    setTimeout(function() {
+
+                        card.style.transform = "";
+
+                    }, 350);
+
+                });
+
+            });
+
+    </script>
+
+
 </body>
 </html>
