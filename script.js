@@ -127,42 +127,38 @@ document.querySelectorAll(".card").forEach((card) => {
     });
 });
 
-// =========================================================
-// 🎵 MUSIC BUTTON
-// =========================================================
+// =====================================================
+// 🎵 SERVAMP MUSIC BUTTON
+// =====================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const button = document.getElementById("music-toggle");
-    const player = document.getElementById("youtube-player");
+    const btn = document.getElementById("musicBtn");
+    const frame = document.getElementById("musicFrame");
 
-    if (!button || !player) return;
+    if (!btn || !frame) return;
 
-    let playing = true;
+    let playing = false;
 
-    button.addEventListener("click", () => {
+    btn.addEventListener("click", () => {
 
-        if (playing) {
+        if (!playing) {
 
-            player.src = player.src.replace(
-                "&autoplay=1",
-                "&autoplay=0"
-            );
+            frame.src =
+                "https://www.youtube.com/embed/9-WagXIJZo4?autoplay=1&enablejsapi=1";
 
-            button.textContent = "▶";
+            btn.textContent = "⏸";
 
-            playing = false;
+            playing = true;
 
         } else {
 
-            player.src = player.src.replace(
-                "&autoplay=0",
-                "&autoplay=1"
-            );
+            frame.src =
+                "https://www.youtube.com/embed/9-WagXIJZo4?enablejsapi=1";
 
-            button.textContent = "⏸";
+            btn.textContent = "▶";
 
-            playing = true;
+            playing = false;
         }
 
     });
