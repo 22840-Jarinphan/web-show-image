@@ -708,3 +708,231 @@ footer strong {
         filter: drop-shadow(0 0 8px #ff4081);
     }
 }
+
+/* =========================================================
+   ⭐ BIG STARS BACKGROUND
+========================================================= */
+
+.big-stars {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+/* ดาว */
+
+.big-stars span {
+    position: absolute;
+
+    color: #ffffff;
+
+    font-family: Arial, sans-serif;
+
+    opacity: .45;
+
+    text-shadow:
+        0 0 8px #ffffff,
+        0 0 20px #ff80ab,
+        0 0 40px #ec407a;
+
+    animation:
+        starFloat 5s ease-in-out infinite,
+        starTwinkle 2s ease-in-out infinite alternate;
+
+    will-change: transform, opacity;
+}
+
+
+/* =========================================================
+   ⭐ ตำแหน่งดาว
+========================================================= */
+
+.big-stars span:nth-child(1) {
+    left: 5%;
+    top: 10%;
+    font-size: 90px;
+    animation-delay: 0s;
+}
+
+.big-stars span:nth-child(2) {
+    left: 20%;
+    top: 30%;
+    font-size: 55px;
+    animation-delay: 1s;
+}
+
+.big-stars span:nth-child(3) {
+    right: 5%;
+    top: 8%;
+    font-size: 110px;
+    animation-delay: 1.5s;
+}
+
+.big-stars span:nth-child(4) {
+    left: 8%;
+    top: 55%;
+    font-size: 60px;
+    animation-delay: 2s;
+}
+
+.big-stars span:nth-child(5) {
+    right: 12%;
+    top: 35%;
+    font-size: 85px;
+    animation-delay: .5s;
+}
+
+.big-stars span:nth-child(6) {
+    left: 35%;
+    top: 15%;
+    font-size: 45px;
+    animation-delay: 2.5s;
+}
+
+.big-stars span:nth-child(7) {
+    right: 20%;
+    top: 60%;
+    font-size: 100px;
+    animation-delay: 1s;
+}
+
+.big-stars span:nth-child(8) {
+    left: 15%;
+    bottom: 8%;
+    font-size: 65px;
+    animation-delay: 3s;
+}
+
+.big-stars span:nth-child(9) {
+    right: 5%;
+    bottom: 10%;
+    font-size: 90px;
+    animation-delay: 2s;
+}
+
+.big-stars span:nth-child(10) {
+    left: 45%;
+    bottom: 15%;
+    font-size: 50px;
+    animation-delay: 3.5s;
+}
+
+.big-stars span:nth-child(11) {
+    left: 55%;
+    top: 40%;
+    font-size: 70px;
+    animation-delay: 1.5s;
+}
+
+.big-stars span:nth-child(12) {
+    right: 35%;
+    bottom: 8%;
+    font-size: 55px;
+    animation-delay: 4s;
+}
+
+.big-stars span:nth-child(13) {
+    left: 3%;
+    top: 78%;
+    font-size: 45px;
+    animation-delay: 2.5s;
+}
+
+.big-stars span:nth-child(14) {
+    right: 3%;
+    top: 75%;
+    font-size: 60px;
+    animation-delay: 4.5s;
+}
+
+
+/* =========================================================
+   ⭐ ดาวลอยขึ้นลงจริง ๆ
+========================================================= */
+
+@keyframes starFloat {
+
+    0% {
+        transform:
+            translate3d(0, 0, 0)
+            rotate(0deg)
+            scale(.85);
+    }
+
+    25% {
+        transform:
+            translate3d(12px, -18px, 0)
+            rotate(8deg)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(-8px, -35px, 0)
+            rotate(-8deg)
+            scale(1.12);
+    }
+
+    75% {
+        transform:
+            translate3d(15px, -18px, 0)
+            rotate(10deg)
+            scale(1);
+    }
+
+    100% {
+        transform:
+            translate3d(0, 0, 0)
+            rotate(0deg)
+            scale(.85);
+    }
+}
+
+
+/* =========================================================
+   ✨ กระพริบเรืองแสง
+========================================================= */
+
+@keyframes starTwinkle {
+
+    0% {
+        opacity: .18;
+
+        filter:
+            brightness(.8)
+            drop-shadow(0 0 5px #ffffff);
+    }
+
+    50% {
+        opacity: .8;
+
+        filter:
+            brightness(1.5)
+            drop-shadow(0 0 15px #ffffff)
+            drop-shadow(0 0 35px #ff80ab);
+    }
+
+    100% {
+        opacity: .35;
+
+        filter:
+            brightness(1)
+            drop-shadow(0 0 10px #ec407a);
+    }
+}
+
+header,
+.gallery,
+footer {
+    position: relative;
+    z-index: 5;
+}
