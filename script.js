@@ -126,3 +126,45 @@ document.querySelectorAll(".card").forEach((card) => {
         }, 350);
     });
 });
+
+// =========================================================
+// 🎵 MUSIC BUTTON
+// =========================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const button = document.getElementById("music-toggle");
+    const player = document.getElementById("youtube-player");
+
+    if (!button || !player) return;
+
+    let playing = true;
+
+    button.addEventListener("click", () => {
+
+        if (playing) {
+
+            player.src = player.src.replace(
+                "&autoplay=1",
+                "&autoplay=0"
+            );
+
+            button.textContent = "▶";
+
+            playing = false;
+
+        } else {
+
+            player.src = player.src.replace(
+                "&autoplay=0",
+                "&autoplay=1"
+            );
+
+            button.textContent = "⏸";
+
+            playing = true;
+        }
+
+    });
+
+});
