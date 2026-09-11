@@ -936,3 +936,175 @@ footer {
     position: relative;
     z-index: 5;
 }
+
+/* =========================================================
+   🎵 SERVAMP MUSIC PLAYER
+========================================================= */
+
+.music-player {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+
+    width: 270px;
+    padding: 12px 15px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(173, 20, 87, .95),
+            rgba(229, 57, 53, .9)
+        );
+
+    border: 2px solid rgba(255,255,255,.7);
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 15px rgba(255,255,255,.4),
+        0 0 35px rgba(236,64,122,.7),
+        0 10px 35px rgba(0,0,0,.3);
+
+    backdrop-filter: blur(12px);
+
+    z-index: 9999;
+
+    animation: musicFloat 3s ease-in-out infinite;
+}
+
+
+/* 🎵 ไอคอน */
+
+.music-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+
+    background: rgba(255,255,255,.2);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 15px rgba(255,255,255,.5);
+
+    animation: musicSpin 4s linear infinite;
+}
+
+
+/* 🦇 ข้อความ */
+
+.music-info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+}
+
+.music-info span {
+    font-size: 9px;
+    letter-spacing: 2px;
+    opacity: .8;
+}
+
+.music-info b {
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+
+/* ▶ ปุ่ม */
+
+#music-toggle {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: white;
+    color: #ad1457;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,.8);
+
+    transition: .3s;
+}
+
+#music-toggle:hover {
+    transform: scale(1.15) rotate(10deg);
+
+    box-shadow:
+        0 0 20px white,
+        0 0 35px #ff80ab;
+}
+
+
+/* ✨ ลอยเบา ๆ */
+
+@keyframes musicFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* 🎵 หมุน */
+
+@keyframes musicSpin {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* 📱 มือถือ */
+
+@media (max-width: 600px) {
+
+    .music-player {
+        right: 12px;
+        bottom: 12px;
+
+        width: 220px;
+        padding: 9px;
+    }
+
+    .music-info b {
+        font-size: 11px;
+    }
+
+    .music-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    #music-toggle {
+        width: 35px;
+        height: 35px;
+    }
+}
