@@ -5,231 +5,1378 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Servamp แกลเลอรี | Mint & Sky Fantasy</title>
+    <title>Servamp Gallery | Mint & Vampire Fantasy</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+
+        /* =========================================================
+           🌿 SERVAMP GALLERY
+           MINT & SKY + VAMPIRE FANTASY
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                "Segoe UI",
+                "Noto Sans Thai",
+                Tahoma,
+                sans-serif;
+
+            color: #e9ffff;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(90, 255, 218, 0.20),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 80% 30%,
+                    rgba(70, 190, 255, 0.20),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 50% 90%,
+                    rgba(20, 255, 200, 0.15),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #03191d,
+                    #062d34,
+                    #064452,
+                    #061c30,
+                    #020c16
+                );
+
+            background-size: 300% 300%;
+
+            animation:
+                backgroundMove 18s ease infinite;
+        }
+
+
+        /* =========================================================
+           🌌 ANIMATED BACKGROUND
+        ========================================================= */
+
+        @keyframes backgroundMove {
+
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+
+        /* =========================================================
+           ⭐ BIG STARS
+        ========================================================= */
+
+        .big-stars {
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 0;
+        }
+
+        .big-stars span {
+            position: absolute;
+
+            color: #bffff5;
+
+            font-size: 35px;
+
+            text-shadow:
+                0 0 8px #8affea,
+                0 0 20px #4debd1,
+                0 0 40px rgba(80, 255, 230, 0.8);
+
+            animation:
+                starTwinkle 3s ease-in-out infinite,
+                starFloat 7s ease-in-out infinite;
+        }
+
+        .big-stars span:nth-child(1) {
+            top: 8%;
+            left: 7%;
+            font-size: 55px;
+        }
+
+        .big-stars span:nth-child(2) {
+            top: 18%;
+            left: 25%;
+            font-size: 30px;
+            animation-delay: 1s;
+        }
+
+        .big-stars span:nth-child(3) {
+            top: 10%;
+            right: 15%;
+            font-size: 65px;
+            animation-delay: 2s;
+        }
+
+        .big-stars span:nth-child(4) {
+            top: 35%;
+            right: 5%;
+            font-size: 40px;
+            animation-delay: .5s;
+        }
+
+        .big-stars span:nth-child(5) {
+            top: 55%;
+            left: 5%;
+            font-size: 60px;
+            animation-delay: 1.5s;
+        }
+
+        .big-stars span:nth-child(6) {
+            top: 70%;
+            right: 13%;
+            font-size: 45px;
+            animation-delay: 2.5s;
+        }
+
+        .big-stars span:nth-child(7) {
+            bottom: 8%;
+            left: 30%;
+            font-size: 35px;
+        }
+
+        .big-stars span:nth-child(8) {
+            bottom: 15%;
+            right: 40%;
+            font-size: 60px;
+            animation-delay: 1.2s;
+        }
+
+        @keyframes starTwinkle {
+
+            0%,
+            100% {
+                opacity: .25;
+                transform: scale(.8);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes starFloat {
+
+            0%,
+            100% {
+                margin-top: 0;
+            }
+
+            50% {
+                margin-top: -18px;
+            }
+        }
+
+
+        /* =========================================================
+           🌙 MOON
+        ========================================================= */
+
+        .moon {
+            position: fixed;
+
+            top: 90px;
+            right: 8%;
+
+            width: 145px;
+            height: 145px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    #ffffff,
+                    #c9fff5 45%,
+                    #7ce8d5 75%,
+                    #45a99d
+                );
+
+            box-shadow:
+                0 0 20px #d9fff9,
+                0 0 50px rgba(102, 255, 228, .7),
+                0 0 100px rgba(51, 224, 200, .35);
+
+            opacity: .9;
+
+            z-index: 1;
+
+            animation:
+                moonFloat 6s ease-in-out infinite;
+        }
+
+        .moon::before,
+        .moon::after {
+            content: "";
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            background: rgba(48, 150, 143, .22);
+        }
+
+        .moon::before {
+            width: 25px;
+            height: 25px;
+
+            top: 30px;
+            left: 35px;
+        }
+
+        .moon::after {
+            width: 18px;
+            height: 18px;
+
+            bottom: 35px;
+            right: 30px;
+        }
+
+        @keyframes moonFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+
+        /* =========================================================
+           🌫️ FOG
+        ========================================================= */
+
+        .fog {
+            position: fixed;
+
+            left: -20%;
+            bottom: 0;
+
+            width: 140%;
+            height: 250px;
+
+            pointer-events: none;
+
+            z-index: 2;
+
+            opacity: .30;
+
+            filter: blur(25px);
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(190, 255, 247, .55),
+                    transparent 65%
+                );
+
+            animation: fogMove 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes fogMove {
+
+            from {
+                transform: translateX(-8%);
+            }
+
+            to {
+                transform: translateX(8%);
+            }
+        }
+
+
+        /* =========================================================
+           🦇 BAT DECORATION
+        ========================================================= */
+
+        .bats {
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 4;
+        }
+
+        .bat {
+            position: absolute;
+
+            font-size: 35px;
+
+            filter:
+                drop-shadow(0 0 8px rgba(84, 255, 225, .8));
+
+            animation:
+                batFly 12s linear infinite;
+        }
+
+        .bat:nth-child(1) {
+            top: 18%;
+            left: -10%;
+            animation-duration: 16s;
+        }
+
+        .bat:nth-child(2) {
+            top: 42%;
+            left: -15%;
+            animation-duration: 20s;
+            animation-delay: 3s;
+        }
+
+        .bat:nth-child(3) {
+            top: 70%;
+            left: -10%;
+            animation-duration: 18s;
+            animation-delay: 6s;
+        }
+
+        @keyframes batFly {
+
+            0% {
+                transform:
+                    translateX(0)
+                    translateY(0)
+                    scale(.7)
+                    rotate(-5deg);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            50% {
+                transform:
+                    translateX(60vw)
+                    translateY(-70px)
+                    scale(1)
+                    rotate(5deg);
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateX(120vw)
+                    translateY(50px)
+                    scale(.6)
+                    rotate(-5deg);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           🍃 FLOATING LEAVES
+        ========================================================= */
+
+        .leaves {
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 3;
+        }
+
+        .leaf {
+            position: absolute;
+
+            font-size: 25px;
+
+            color: #82ffe5;
+
+            filter:
+                drop-shadow(0 0 8px rgba(92, 255, 224, .7));
+
+            animation: leafFall linear infinite;
+        }
+
+        @keyframes leafFall {
+
+            0% {
+                transform:
+                    translateY(-100px)
+                    translateX(0)
+                    rotate(0deg);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            50% {
+                transform:
+                    translateY(50vh)
+                    translateX(80px)
+                    rotate(180deg);
+            }
+
+            100% {
+                transform:
+                    translateY(110vh)
+                    translateX(-100px)
+                    rotate(360deg);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           🧭 HEADER
+        ========================================================= */
+
+        header {
+            position: relative;
+
+            z-index: 10;
+
+            text-align: center;
+
+            padding:
+                90px
+                20px
+                70px;
+
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            top: -250px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(69, 255, 219, .20),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           ✨ TITLE
+        ========================================================= */
+
+        header h1 {
+            position: relative;
+
+            font-size:
+                clamp(35px, 6vw, 72px);
+
+            font-weight: 900;
+
+            letter-spacing: 3px;
+
+            color: #dffff9;
+
+            text-shadow:
+                0 0 8px #6effe5,
+                0 0 20px #31d8c0,
+                0 0 45px rgba(38, 255, 216, .8);
+
+            animation:
+                titleGlow 3s ease-in-out infinite;
+
+            cursor: default;
+        }
+
+        header h1:hover {
+            animation:
+                titleShake .5s ease;
+        }
+
+        @keyframes titleGlow {
+
+            0%,
+            100% {
+                text-shadow:
+                    0 0 8px #6effe5,
+                    0 0 20px #31d8c0,
+                    0 0 45px rgba(38, 255, 216, .7);
+            }
+
+            50% {
+                text-shadow:
+                    0 0 15px #ffffff,
+                    0 0 35px #5ffff0,
+                    0 0 70px #2effd1;
+            }
+        }
+
+        @keyframes titleShake {
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-3px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+
+        header p {
+            position: relative;
+
+            margin-top: 20px;
+
+            font-size: 19px;
+
+            color: #b9fff3;
+
+            letter-spacing: 1px;
+
+            text-shadow:
+                0 0 10px rgba(100, 255, 228, .8);
+        }
+
+
+        /* =========================================================
+           💎 DECORATION LINE
+        ========================================================= */
+
+        .magic-line {
+            position: relative;
+
+            width: 230px;
+            height: 4px;
+
+            margin: 30px auto 0;
+
+            border-radius: 100px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #4ffff0,
+                    white,
+                    #4ffff0,
+                    transparent
+                );
+
+            box-shadow:
+                0 0 10px #43ffe8,
+                0 0 30px #43ffe8;
+
+            animation:
+                lineGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes lineGlow {
+
+            0%,
+            100% {
+                transform: scaleX(.7);
+            }
+
+            50% {
+                transform: scaleX(1.2);
+            }
+        }
+
+
+        /* =========================================================
+           🖼️ GALLERY
+        ========================================================= */
+
+        .gallery {
+            position: relative;
+
+            z-index: 10;
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            padding:
+                30px
+                30px
+                100px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 35px;
+        }
+
+
+        /* =========================================================
+           🃏 CARD
+        ========================================================= */
+
+        .card {
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(9, 58, 64, .92),
+                    rgba(4, 29, 40, .96)
+                );
+
+            border:
+                1px solid rgba(113, 255, 231, .35);
+
+            box-shadow:
+                0 15px 45px rgba(0, 0, 0, .45),
+                inset 0 0 30px rgba(74, 255, 224, .04);
+
+            transform:
+                translateY(50px);
+
+            opacity: 0;
+
+            transition:
+                transform .7s ease,
+                opacity .7s ease,
+                box-shadow .5s ease,
+                border-color .5s ease;
+        }
+
+        .card.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            border-radius: 28px;
+
+            padding: 2px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #54ffe6,
+                    transparent,
+                    #52baff,
+                    transparent,
+                    #54ffe6
+                );
+
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+
+            -webkit-mask-composite: xor;
+
+            mask-composite: exclude;
+
+            opacity: .65;
+
+            pointer-events: none;
+
+            animation:
+                borderRotate 5s linear infinite;
+        }
+
+        @keyframes borderRotate {
+
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+
+        /* =========================================================
+           🖱️ CARD HOVER
+        ========================================================= */
+
+        .card:hover {
+            transform:
+                translateY(-18px)
+                scale(1.025);
+
+            border-color:
+                rgba(108, 255, 237, .9);
+
+            box-shadow:
+                0 30px 70px rgba(0, 0, 0, .55),
+                0 0 25px rgba(78, 255, 225, .25),
+                0 0 70px rgba(78, 255, 225, .12);
+        }
+
+
+        /* =========================================================
+           🖼️ IMAGE
+        ========================================================= */
+
+        .image-box {
+            position: relative;
+
+            overflow: hidden;
+
+            height: 330px;
+        }
+
+        .image-box::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    transparent 50%,
+                    rgba(1, 20, 28, .65)
+                );
+
+            pointer-events: none;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform .8s cubic-bezier(.2,.8,.2,1),
+                filter .5s ease;
+        }
+
+        .card:hover img {
+            transform:
+                scale(1.12)
+                rotate(1deg);
+
+            filter:
+                brightness(1.1)
+                saturate(1.15);
+        }
+
+
+        /* =========================================================
+           🦇 IMAGE BADGE
+        ========================================================= */
+
+        .image-badge {
+            position: absolute;
+
+            top: 18px;
+            left: 18px;
+
+            z-index: 3;
+
+            padding:
+                8px
+                14px;
+
+            border-radius: 100px;
+
+            background:
+                rgba(2, 26, 31, .75);
+
+            border:
+                1px solid rgba(122, 255, 235, .55);
+
+            color: #cffff8;
+
+            font-size: 13px;
+
+            backdrop-filter: blur(10px);
+
+            box-shadow:
+                0 0 20px rgba(72, 255, 224, .2);
+        }
+
+
+        /* =========================================================
+           📝 CONTENT
+        ========================================================= */
+
+        .content {
+            position: relative;
+
+            padding: 30px;
+        }
+
+        .content h2 {
+            color: #8ffff0;
+
+            font-size: 27px;
+
+            margin-bottom: 15px;
+
+            text-shadow:
+                0 0 8px rgba(80, 255, 226, .65);
+
+            transition: .3s;
+        }
+
+        .content h2:hover {
+            color: white;
+
+            letter-spacing: 1px;
+
+            text-shadow:
+                0 0 10px #fff,
+                0 0 25px #48ffe2,
+                0 0 45px #48ffe2;
+        }
+
+        .content p {
+            color: #c6e9e6;
+
+            font-size: 15px;
+
+            line-height: 1.9;
+
+            white-space: pre-line;
+        }
+
+
+        /* =========================================================
+           ✨ TEXT HOVER
+        ========================================================= */
+
+        .content p,
+        .content h2 {
+            cursor: default;
+        }
+
+        .content p:hover {
+            color: #ffffff;
+
+            text-shadow:
+                0 0 5px rgba(120, 255, 239, .5);
+
+            transition: .3s;
+        }
+
+
+        /* =========================================================
+           🌟 CARD NUMBER
+        ========================================================= */
+
+        .number {
+            position: absolute;
+
+            top: 20px;
+            right: 25px;
+
+            font-size: 60px;
+
+            font-weight: 900;
+
+            color: rgba(107, 255, 235, .08);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           🔮 FOOTER
+        ========================================================= */
+
+        footer {
+            position: relative;
+
+            z-index: 10;
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(2, 19, 27, .3),
+                    rgba(1, 10, 17, .95)
+                );
+
+            border-top:
+                1px solid rgba(94, 255, 228, .25);
+
+            box-shadow:
+                0 -10px 40px rgba(0, 0, 0, .3);
+        }
+
+        footer .footer-title {
+            font-size: 24px;
+
+            font-weight: 800;
+
+            color: #8ffff0;
+
+            margin-bottom: 10px;
+
+            text-shadow:
+                0 0 15px #45ffe2;
+        }
+
+        footer p {
+            color: #a9cfcb;
+
+            margin: 7px;
+        }
+
+
+        /* =========================================================
+           ✨ FLOATING PARTICLES
+        ========================================================= */
+
+        .particles {
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: 8;
+
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+
+            bottom: -50px;
+
+            color: #8effed;
+
+            text-shadow:
+                0 0 8px #42ffe2,
+                0 0 18px #42ffe2;
+
+            animation:
+                particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0deg)
+                    scale(.5);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            50% {
+                transform:
+                    translateY(-50vh)
+                    translateX(60px)
+                    rotate(180deg)
+                    scale(1);
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    translateX(-80px)
+                    rotate(360deg)
+                    scale(.4);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           💗 MAGIC CURSOR
+        ========================================================= */
+
+        .cursor-heart {
+            position: fixed;
+
+            z-index: 9999;
+
+            pointer-events: none;
+
+            font-size: 20px;
+
+            transform:
+                translate(-50%, -50%);
+
+            filter:
+                drop-shadow(0 0 8px #67ffe8)
+                drop-shadow(0 0 15px #67ffe8);
+
+            transition:
+                left .08s linear,
+                top .08s linear;
+        }
+
+
+        /* =========================================================
+           ✨ CLICK SPARK
+        ========================================================= */
+
+        .click-spark {
+            position: fixed;
+
+            pointer-events: none;
+
+            z-index: 99999;
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            animation:
+                clickSpark .7s ease-out forwards;
+        }
+
+        @keyframes clickSpark {
+
+            0% {
+                transform:
+                    translate(-50%, -50%)
+                    scale(.5);
+
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translate(-50%, -130px)
+                    scale(1.5);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           🔝 SCROLL TOP
+        ========================================================= */
+
+        #topButton {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            z-index: 100;
+
+            width: 55px;
+            height: 55px;
+
+            border: 1px solid rgba(127, 255, 238, .7);
+
+            border-radius: 50%;
+
+            background:
+                rgba(3, 39, 45, .8);
+
+            color: #a8fff3;
+
+            font-size: 23px;
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: .3s;
+
+            backdrop-filter: blur(10px);
+
+            box-shadow:
+                0 0 20px rgba(76, 255, 226, .25);
+        }
+
+        #topButton.show {
+            opacity: 1;
+
+            pointer-events: auto;
+        }
+
+        #topButton:hover {
+            transform:
+                translateY(-5px)
+                scale(1.1);
+
+            box-shadow:
+                0 0 25px #49ffe2,
+                0 0 50px rgba(73, 255, 226, .4);
+        }
+
+
+        /* =========================================================
+           📱 RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .moon {
+                width: 110px;
+                height: 110px;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            header {
+                padding-top: 70px;
+            }
+
+            header h1 {
+                font-size: 35px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+
+                padding:
+                    20px
+                    15px
+                    70px;
+            }
+
+            .image-box {
+                height: 280px;
+            }
+
+            .moon {
+                width: 80px;
+                height: 80px;
+
+                top: 30px;
+                right: 20px;
+
+                opacity: .5;
+            }
+
+            .bat {
+                font-size: 25px;
+            }
+
+            .content {
+                padding: 24px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-    <!-- =====================================================
-         ⭐ BIG STARS BACKGROUND
-    ====================================================== -->
-    <div class="big-stars" aria-hidden="true">
-        <span>★</span>
+
+    <!-- =========================================================
+         ⭐ BIG STARS
+    ========================================================= -->
+
+    <div class="big-stars">
+
         <span>✦</span>
-        <span>★</span>
         <span>✧</span>
-        <span>★</span>
         <span>✦</span>
-        <span>★</span>
+        <span>⋆</span>
         <span>✧</span>
-        <span>★</span>
         <span>✦</span>
-        <span>★</span>
-        <span>✦</span>
-        <span>★</span>
+        <span>⋆</span>
         <span>✧</span>
-    </div>
-
-
-    <!-- =====================================================
-         💖 CUSTOM CURSOR
-    ====================================================== -->
-    <div class="custom-cursor" id="customCursor"></div>
-
-
-    <!-- =====================================================
-         🍃 BACKGROUND EMOJIS
-    ====================================================== -->
-    <div class="background-emojis" aria-hidden="true">
-
-        <span style="top: 8%; left: 8%; animation-delay: 0s;">
-            🍃
-        </span>
-
-        <span style="top: 18%; left: 82%; animation-delay: 1s;">
-            🌿
-        </span>
-
-        <span style="top: 36%; left: 18%; animation-delay: 2s;">
-            🦇
-        </span>
-
-        <span style="top: 42%; left: 88%; animation-delay: 3s;">
-            ✧
-        </span>
-
-        <span style="top: 58%; left: 7%; animation-delay: 4s;">
-            🩸
-        </span>
-
-        <span style="top: 67%; left: 92%; animation-delay: 5s;">
-            🌱
-        </span>
-
-        <span style="top: 76%; left: 25%; animation-delay: 6s;">
-            ✨
-        </span>
-
-        <span style="top: 87%; left: 70%; animation-delay: 7s;">
-            🍃
-        </span>
-
-        <span style="top: 28%; left: 48%; animation-delay: 2.5s;">
-            ☘️
-        </span>
-
-        <span style="top: 82%; left: 48%; animation-delay: 4.5s;">
-            🩸
-        </span>
 
     </div>
 
 
-    <!-- =====================================================
-         🎬 HEADER
-    ====================================================== -->
+    <!-- =========================================================
+         🌙 MOON
+    ========================================================= -->
+
+    <div class="moon"></div>
+
+
+    <!-- =========================================================
+         🌫️ FOG
+    ========================================================= -->
+
+    <div class="fog"></div>
+
+
+    <!-- =========================================================
+         🦇 BATS
+    ========================================================= -->
+
+    <div class="bats">
+
+        <div class="bat">🦇</div>
+        <div class="bat">🦇</div>
+        <div class="bat">🦇</div>
+
+    </div>
+
+
+    <!-- =========================================================
+         🍃 LEAVES
+    ========================================================= -->
+
+    <div class="leaves">
+
+        <span class="leaf" style="left:5%; animation-duration:12s;">🍃</span>
+        <span class="leaf" style="left:15%; animation-duration:15s; animation-delay:2s;">🍂</span>
+        <span class="leaf" style="left:28%; animation-duration:11s; animation-delay:4s;">🍃</span>
+        <span class="leaf" style="left:42%; animation-duration:17s; animation-delay:1s;">🌿</span>
+        <span class="leaf" style="left:58%; animation-duration:13s; animation-delay:3s;">🍃</span>
+        <span class="leaf" style="left:72%; animation-duration:16s;">🍂</span>
+        <span class="leaf" style="left:88%; animation-duration:12s; animation-delay:5s;">🍃</span>
+
+    </div>
+
+
+    <!-- =========================================================
+         ✨ PARTICLES
+    ========================================================= -->
+
+    <div class="particles" id="particles"></div>
+
+
+    <!-- =========================================================
+         💗 CURSOR
+    ========================================================= -->
+
+    <div class="cursor-heart" id="cursorHeart">
+        💚
+    </div>
+
+
+    <!-- =========================================================
+         🌿 HEADER
+    ========================================================= -->
+
     <header>
 
-        <div class="title-decoration">
-            <span>🍃</span>
-            <span>✦</span>
-            <span>🦇</span>
-            <span>✦</span>
-            <span>🌿</span>
-        </div>
-
-        <h1>🎬 Servamp แกลเลอรี</h1>
+        <h1>
+            🦇 Servamp Gallery 🌙
+        </h1>
 
         <p>
-            ตัวละครที่โดดเด่นจาก "เซอร์แวมพ์" 🦇🍃
+            แกลเลอรีตัวละครที่ฉันชื่นชอบ
+            ✦ Mint & Sky Vampire Fantasy ✦
         </p>
+
+        <div class="magic-line"></div>
 
     </header>
 
 
-    <!-- =====================================================
-         🧭 NAVIGATION BAR
-    ====================================================== -->
-    <nav class="navbar">
-
-        <div class="nav-links">
-
-            <a href="#">หน้าแรก</a>
-
-            <a href="#">ตัวละคร</a>
-
-            <a href="#">แกลเลอรี</a>
-
-            <a href="#">เกี่ยวกับ</a>
-
-        </div>
-
-    </nav>
-
-
-    <!-- =====================================================
+    <!-- =========================================================
          🖼️ GALLERY
-    ====================================================== -->
+    ========================================================= -->
+
     <section class="gallery">
 
 
-        <!-- =================================================
-             CHARACTER 01
-        ================================================== -->
+        <!-- =====================================================
+             CARD 1
+        ====================================================== -->
+
         <article class="card">
 
-            <div class="card-image">
+            <div class="image-box">
 
-                <span class="image-label">
-                    🌿 CHARACTER 01
-                </span>
-
-                <img
-                    src="https://i.pinimg.com/736x/f4/33/c2/f433c233c0f4e6680a27bed75d38b3dc.jpg"
-                    alt="สึบากิ Servamp"
-                >
-
-            </div>
-
-
-            <div class="content">
-
-                <span class="number">
-                    01 • SERVAMP
-                </span>
-
-                <h2>
-                    สึบากิ (Tsubaki)
-                </h2>
-
-                <p>
-                    วายร้ายในช่วงต้นเรื่อง เซอร์แวมพ์หมายเลข 8
-                    ผู้เป็นอมมนุษย์แห่งความเศร้าโศก (Melancholy)
-                    จากอนิเมะและมังงะเรื่อง Servamp (เซอร์แวมพ์)
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- =================================================
-             CHARACTER 02
-        ================================================== -->
-        <article class="card">
-
-            <div class="card-image">
-
-                <span class="image-label">
-                    🦇 CHARACTER 02
-                </span>
-
-                <img
-                    src="https://i.pinimg.com/736x/db/c1/16/dbc116a8f8a950d3b437613dd6b5db49.jpg"
-                    alt="คุโระ Servamp"
-                >
-
-            </div>
-
-
-            <div class="content">
-
-                <span class="number">
-                    02 • SERVAMP
-                </span>
-
-                <h2>
-                    คุโระ (Kuro)
-                </h2>
-
-                <p>
-                    หรือที่รู้จักในชื่อ สลีปปี้ แอช (Sleepy Ash)
-                    เป็นเซอร์แวมพ์พี่น้องคนโตและแข็งแกร่งที่สุด
-                    ในบรรดาบาปทั้ง 7 ตัวละครเอกแห่งเรื่อง Servamp
-                </p>
-
-            </div>
-
-        </article>
-
-
-        <!-- =================================================
-             CHARACTER 03
-        ================================================== -->
-        <article class="card">
-
-            <div class="card-image">
-
-                <span class="image-label">
-                    🩸 CHARACTER 03
-                </span>
+                <div class="image-badge">
+                    🦇 CHARACTER 01
+                </div>
 
                 <img
                     src="https://i.pinimg.com/736x/ce/2f/9c/ce2f9cdad2adbe2c0b6948f8b1ef42ce.jpg"
-                    alt="วาตานุกิ ซาคุยะ Servamp"
+                    alt="วาตานุกิ ซาคุยะ"
                 >
 
             </div>
@@ -237,18 +1384,118 @@
 
             <div class="content">
 
-                <span class="number">
-                    03 • SERVAMP
-                </span>
+                <div class="number">
+                    01
+                </div>
 
                 <h2>
-                    วาตานุกิ ซาคุยะ (Sakuya Watanuki)
+                    🍃 วาตานุกิ ซาคุยะ
                 </h2>
 
                 <p>
-                    เพื่อนร่วมชั้นของมาฮิรุ
-                    ผู้ซ่อนตัวตนที่แท้จริง ในฐานะลูกสมุนแวมไพร์
-                    ของสึบากิ และมีฉายาว่า "คนโกหก"
+ซาคุยะเป็นเพื่อนสนิทของมาฮิรุจากเรื่อง Servamp และมีความลับเกี่ยวกับการเป็นแวมไพร์ลูกสมุนของสึบากิ
+
+เขามักแสดงตัวเป็นวัยรุ่นที่ร่าเริง เป็นมิตร และเข้ากับคนอื่นได้ง่าย แต่จริง ๆ แล้วเขาใช้การโกหกเป็นเหมือนเกราะป้องกันตัวเอง
+
+ในอดีต ซาคุยะมีปมเกี่ยวกับครอบครัวและพี่สาว ซึ่งทำให้เขาเก็บความรู้สึกผิดเอาไว้ภายใน
+
+ต่อมาเขาได้พบกับสึบากิในช่วงเหตุการณ์สำคัญ และชีวิตของเขาก็เปลี่ยนไปอย่างมาก
+
+ความสัมพันธ์ของซาคุยะกับมาฮิรุจึงเต็มไปด้วยทั้งมิตรภาพ ความลับ และความทรงจำที่ซับซ้อน
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- =====================================================
+             CARD 2
+        ====================================================== -->
+
+        <article class="card">
+
+            <div class="image-box">
+
+                <div class="image-badge">
+                    🐈 CHARACTER 02
+                </div>
+
+                <img
+                    src="https://i.pinimg.com/736x/db/c1/16/dbc116a8f8a950d3b437613dd6b5db49.jpg"
+                    alt="คุโระ Sleepy Ash"
+                >
+
+            </div>
+
+
+            <div class="content">
+
+                <div class="number">
+                    02
+                </div>
+
+                <h2>
+                    🐈 คุโระ (Kuro)
+                </h2>
+
+                <p>
+คุโระ หรือ สลีปปี้แอซ เป็นหนึ่งในตัวละครสำคัญของ Servamp และเป็นตัวแทนของบาปแห่งความเกียจคร้าน
+
+เขามีบุคลิกเฉื่อยชา ขี้เกียจ และไม่ค่อยชอบเรื่องยุ่งยาก มักอยากนอน เล่นเกม และใช้ชีวิตอย่างสบาย ๆ
+
+ในร่างมนุษย์เขามีผมสีฟ้าเทาและดวงตาสีแดง ส่วนในบางสถานการณ์สามารถปรากฏตัวเป็นแมวดำได้
+
+คุโระได้พบกับชิโรตะ มาฮิรุ ซึ่งกลายเป็น Eve ของเขา และทั้งสองได้ทำพันธสัญญากัน
+
+แม้ภายนอกจะดูขี้เกียจและไม่สนใจอะไร แต่คุโระมีอดีตที่หนักหน่วงและมีความรู้สึกเกี่ยวกับเหตุการณ์ในอดีตที่ส่งผลต่อเรื่องราวอย่างมาก
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- =====================================================
+             CARD 3
+        ====================================================== -->
+
+        <article class="card">
+
+            <div class="image-box">
+
+                <div class="image-badge">
+                    🌹 CHARACTER 03
+                </div>
+
+                <img
+                    src="https://i.pinimg.com/736x/f4/33/c2/f433c233c0f4e6680a27bed75d38b3dc.jpg"
+                    alt="สึบากิ Tsubaki"
+                >
+
+            </div>
+
+
+            <div class="content">
+
+                <div class="number">
+                    03
+                </div>
+
+                <h2>
+                    🌹 สึบากิ (Tsubaki)
+                </h2>
+
+                <p>
+สึบากิเป็นหนึ่งในตัวละครสำคัญของ Servamp และในช่วงต้นเรื่องถูกนำเสนอในฐานะเซอร์แวมพ์ตนที่ 8 แห่งความโศกเศร้า
+
+ภายนอกเขามักแสดงออกอย่างร่าเริง ชอบหัวเราะ และทำตัวเหมือนเป็นคนสบาย ๆ แต่เบื้องหลังกลับมีความลึกลับและคาดเดาได้ยาก
+
+สึบากิมีความผูกพันกับเหล่า Subclass ของตัวเองอย่างมาก และมองพวกเขาเป็นเหมือนครอบครัว
+
+เขายังมีความรู้สึกเกี่ยวกับการถูกทอดทิ้งและการถูกลืมจากเหล่าเซอร์แวมพ์ ทำให้เรื่องราวของเขามีทั้งความเศร้าและความขัดแย้ง
+
+รูปลักษณ์ของสึบากิมีเอกลักษณ์แบบญี่ปุ่น และมักปรากฏพร้อมดอกคามิเลีย ซึ่งเข้ากับธีมของตัวละครเป็นอย่างดี
                 </p>
 
             </div>
@@ -259,135 +1506,394 @@
     </section>
 
 
-    <!-- =====================================================
-         🦇 VAMPIRE DIVIDER
-    ====================================================== -->
-    <div class="vampire-divider">
+    <!-- =========================================================
+         🔮 FOOTER
+    ========================================================= -->
 
-        <span>🦇</span>
-
-        <i></i>
-
-        <b>🩸</b>
-
-        <i></i>
-
-        <span>🦇</span>
-
-    </div>
-
-
-    <!-- =====================================================
-         🌫️ FOG
-    ====================================================== -->
-    <div class="gallery-fog"></div>
-
-
-    <!-- =====================================================
-         🦇 FLYING BATS
-    ====================================================== -->
-    <div class="flying-bat bat-1">
-        🦇
-    </div>
-
-    <div class="flying-bat bat-2">
-        🦇
-    </div>
-
-    <div class="flying-bat bat-3">
-        🦇
-    </div>
-
-
-    <!-- =====================================================
-         🎵 MUSIC PLAYER
-    ====================================================== -->
-    <div class="music-player">
-
-        <div class="music-icon">
-            🎵
-        </div>
-
-        <div class="music-info">
-
-            <span>
-                NOW PLAYING
-            </span>
-
-            <b>
-                Servamp Music 🦇
-            </b>
-
-        </div>
-
-        <button id="music-toggle">
-            ▶
-        </button>
-
-    </div>
-
-
-    <!-- =====================================================
-         🎵 SERVAMP MUSIC
-    ====================================================== -->
-    <div class="servamp-music">
-
-        <div class="music-disc">
-            🎵
-        </div>
-
-
-        <div class="music-text">
-
-            <small>
-                NOW PLAYING
-            </small>
-
-            <strong>
-                Servamp Music 🦇
-            </strong>
-
-        </div>
-
-
-        <button id="musicBtn">
-            ▶
-        </button>
-
-
-        <!-- YouTube Music -->
-        <iframe
-            id="musicFrame"
-            src="https://www.youtube.com/embed/9-WagXIJZo4?enablejsapi=1"
-            allow="autoplay"
-            title="Servamp Music">
-        </iframe>
-
-    </div>
-
-
-    <!-- =====================================================
-         🦇 FOOTER
-    ====================================================== -->
     <footer>
 
+        <div class="footer-title">
+            🦇 SERVAMP ✦ MINT FANTASY 🌙
+        </div>
+
         <p>
-            <strong>
-                🍃 © 2026 Servamp แกลเลอรี 🦇
-            </strong>
+            © 2026 แกลเลอรีรูปภาพของฉัน
         </p>
 
         <p>
-            สร้างสรรค์ด้วย ☘️ สำหรับแฟนคลับนักเรียน
+            ✦ สร้างสรรค์โดยนักเรียน ✦
         </p>
 
     </footer>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-    <script src="script.js"></script>
+    <!-- =========================================================
+         🔝 TOP BUTTON
+    ========================================================= -->
+
+    <button id="topButton">
+        ↑
+    </button>
+
+
+    <!-- =========================================================
+         ⚙️ JAVASCRIPT
+    ========================================================= -->
+
+    <script>
+
+        /* =====================================================
+           ✨ FLOATING PARTICLES
+        ===================================================== */
+
+        const particleContainer =
+            document.getElementById("particles");
+
+        const particleSymbols = [
+            "✦",
+            "✧",
+            "⋆",
+            "✨",
+            "💚",
+            "♡",
+            "🍃"
+        ];
+
+        for (let i = 0; i < 45; i++) {
+
+            const particle =
+                document.createElement("span");
+
+            particle.className =
+                "particle";
+
+            particle.textContent =
+                particleSymbols[
+                    Math.floor(
+                        Math.random()
+                        *
+                        particleSymbols.length
+                    )
+                ];
+
+            particle.style.left =
+                Math.random() * 100 + "%";
+
+            particle.style.fontSize =
+                (10 + Math.random() * 18) + "px";
+
+            particle.style.animationDuration =
+                (7 + Math.random() * 12) + "s";
+
+            particle.style.animationDelay =
+                (Math.random() * 10) + "s";
+
+            particleContainer.appendChild(
+                particle
+            );
+        }
+
+
+        /* =====================================================
+           🖱️ HEART CURSOR
+        ===================================================== */
+
+        const cursorHeart =
+            document.getElementById("cursorHeart");
+
+        document.addEventListener(
+            "mousemove",
+            (event) => {
+
+                cursorHeart.style.left =
+                    event.clientX + "px";
+
+                cursorHeart.style.top =
+                    event.clientY + "px";
+            }
+        );
+
+
+        /* =====================================================
+           💫 CLICK SPARK
+        ===================================================== */
+
+        document.addEventListener(
+            "click",
+            (event) => {
+
+                const spark =
+                    document.createElement("div");
+
+                spark.className =
+                    "click-spark";
+
+                spark.textContent =
+                    ["✨", "✦", "💚", "✧"]
+                    [
+                        Math.floor(
+                            Math.random() * 4
+                        )
+                    ];
+
+                spark.style.left =
+                    event.clientX + "px";
+
+                spark.style.top =
+                    event.clientY + "px";
+
+                document.body.appendChild(
+                    spark
+                );
+
+                setTimeout(
+                    () => spark.remove(),
+                    700
+                );
+            }
+        );
+
+
+        /* =====================================================
+           🃏 SCROLL REVEAL
+        ===================================================== */
+
+        const cards =
+            document.querySelectorAll(".card");
+
+        const observer =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target
+                                    .classList
+                                    .add("show");
+
+                                observer.unobserve(
+                                    entry.target
+                                );
+                            }
+                        }
+                    );
+
+                },
+                {
+                    threshold: .15
+                }
+            );
+
+
+        cards.forEach(
+            (card) => observer.observe(card)
+        );
+
+
+        /* =====================================================
+           🔝 SCROLL TOP
+        ===================================================== */
+
+        const topButton =
+            document.getElementById(
+                "topButton"
+            );
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (window.scrollY > 400) {
+
+                    topButton.classList
+                        .add("show");
+
+                } else {
+
+                    topButton.classList
+                        .remove("show");
+                }
+
+            }
+        );
+
+
+        topButton.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+        /* =====================================================
+           🖱️ CARD 3D TILT
+        ===================================================== */
+
+        cards.forEach(
+            (card) => {
+
+                card.addEventListener(
+                    "mousemove",
+                    (event) => {
+
+                        const rect =
+                            card.getBoundingClientRect();
+
+                        const x =
+                            event.clientX
+                            -
+                            rect.left;
+
+                        const y =
+                            event.clientY
+                            -
+                            rect.top;
+
+                        const centerX =
+                            rect.width / 2;
+
+                        const centerY =
+                            rect.height / 2;
+
+                        const rotateX =
+                            ((y - centerY)
+                            /
+                            centerY)
+                            * -3;
+
+                        const rotateY =
+                            ((x - centerX)
+                            /
+                            centerX)
+                            * 3;
+
+                        card.style.transform =
+                            `
+                            translateY(-18px)
+                            scale(1.025)
+                            rotateX(${rotateX}deg)
+                            rotateY(${rotateY}deg)
+                            `;
+                    }
+                );
+
+
+                card.addEventListener(
+                    "mouseleave",
+                    () => {
+
+                        card.style.transform =
+                            "";
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================================
+           ✨ TITLE LETTER EFFECT
+        ===================================================== */
+
+        const title =
+            document.querySelector(
+                "header h1"
+            );
+
+        title.addEventListener(
+            "mouseenter",
+            () => {
+
+                title.style
+                    .textShadow =
+                    `
+                    0 0 10px white,
+                    0 0 25px #58ffe5,
+                    0 0 50px #58ffe5,
+                    0 0 90px #38d8ff
+                    `;
+            }
+        );
+
+        title.addEventListener(
+            "mouseleave",
+            () => {
+
+                title.style
+                    .textShadow = "";
+            }
+        );
+
+
+        /* =====================================================
+           🌟 RANDOM PARTICLE REACTION
+        ===================================================== */
+
+        document.addEventListener(
+            "mousemove",
+            (event) => {
+
+                if (
+                    Math.random() > .92
+                ) {
+
+                    const spark =
+                        document.createElement(
+                            "span"
+                        );
+
+                    spark.textContent = "✦";
+
+                    spark.style.position =
+                        "fixed";
+
+                    spark.style.left =
+                        event.clientX + "px";
+
+                    spark.style.top =
+                        event.clientY + "px";
+
+                    spark.style.color =
+                        "#9ffff2";
+
+                    spark.style.pointerEvents =
+                        "none";
+
+                    spark.style.zIndex =
+                        "9998";
+
+                    spark.style.textShadow =
+                        "0 0 10px #48ffe2";
+
+                    spark.style.animation =
+                        "clickSpark .8s ease-out forwards";
+
+                    document.body.appendChild(
+                        spark
+                    );
+
+                    setTimeout(
+                        () => spark.remove(),
+                        800
+                    );
+                }
+
+            }
+        );
+
+    </script>
 
 </body>
+
 </html>
