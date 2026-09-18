@@ -1920,3 +1920,187 @@ footer {
         height: 300px;
     }
 }
+/* =========================================================
+   ✨ MAGIC STARS
+========================================================= */
+
+.magic-stars,
+.floating-leaves,
+.light-dust {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   ⭐ MAGIC STAR
+========================================================= */
+
+.magic-star {
+
+    position: absolute;
+
+    color: #e6fffa;
+
+    opacity: 0;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 12px #52d6b9,
+        0 0 25px #6ebbf5;
+
+    animation:
+        magicStarTwinkle ease-in-out infinite;
+
+}
+
+
+@keyframes magicStarTwinkle {
+
+    0%, 100% {
+        opacity: 0;
+        transform: scale(.4) rotate(0deg);
+    }
+
+    50% {
+        opacity: .9;
+        transform: scale(1.4) rotate(180deg);
+    }
+
+}
+
+
+/* =========================================================
+   🍃 FLOATING LEAVES
+========================================================= */
+
+.floating-leaf {
+
+    position: absolute;
+
+    bottom: -60px;
+
+    opacity: .6;
+
+    filter:
+        drop-shadow(0 0 6px rgba(82,214,185,.7));
+
+    animation:
+        leafFloat linear infinite;
+}
+
+
+@keyframes leafFloat {
+
+    0% {
+
+        transform:
+            translate3d(0,0,0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .7;
+    }
+
+    50% {
+
+        transform:
+            translate3d(80px,-50vh,0)
+            rotate(180deg);
+    }
+
+    90% {
+        opacity: .5;
+    }
+
+    100% {
+
+        transform:
+            translate3d(-100px,-110vh,0)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   💎 LIGHT DUST
+========================================================= */
+
+.dust {
+
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #e6fffa;
+
+    box-shadow:
+        0 0 6px white,
+        0 0 12px #52d6b9,
+        0 0 20px #6ebbf5;
+
+    animation:
+        dustPulse ease-in-out infinite;
+}
+
+
+@keyframes dustPulse {
+
+    0%, 100% {
+
+        opacity: .1;
+
+        transform:
+            scale(.5);
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.5);
+    }
+
+}
+
+
+/* =========================================================
+   📱 ลดเอฟเฟกต์บนมือถือ
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .magic-star {
+        font-size: 10px !important;
+    }
+
+    .floating-leaf {
+        font-size: 15px !important;
+    }
+
+    .light-dust {
+        opacity: .6;
+    }
+
+}
