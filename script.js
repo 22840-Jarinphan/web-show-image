@@ -127,9 +127,9 @@ document.querySelectorAll(".card").forEach((card) => {
     });
 });
 
-// =====================================================
-// 🎵 SERVAMP MUSIC BUTTON
-// =====================================================
+/* =========================================================
+   🎵 SERVAMP MUSIC
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!playing) {
 
             frame.src =
-                "https://www.youtube.com/embed/9-WagXIJZo4?autoplay=1&enablejsapi=1";
+                "https://www.youtube.com/embed/9-WagXIJZo4?autoplay=1&controls=0&enablejsapi=1";
 
             btn.textContent = "⏸";
 
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
 
             frame.src =
-                "https://www.youtube.com/embed/9-WagXIJZo4?enablejsapi=1";
+                "https://www.youtube.com/embed/9-WagXIJZo4?controls=0&enablejsapi=1";
 
             btn.textContent = "▶";
 
@@ -164,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
-
 
 /* =========================================================
    🌌 SERVAMP AURORA EXTRA EFFECTS
