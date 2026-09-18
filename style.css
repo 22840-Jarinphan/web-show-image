@@ -2104,3 +2104,71 @@ footer {
     }
 
 }
+
+/* =========================================================
+   🌟 ACTIVE NAVIGATION
+========================================================= */
+
+.nav-links a.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #52d6b9,
+            #22a38a,
+            #3a8bcd,
+            #6ebbf5
+        );
+
+    background-size: 250% 250%;
+
+    border-color: #e6fffa;
+
+    box-shadow:
+        0 0 10px #52d6b9,
+        0 0 25px rgba(82,214,185,.8),
+        0 0 45px rgba(110,187,245,.6);
+
+    animation:
+        activeAurora 4s ease infinite;
+}
+
+
+/* ✨ แสงวิ่งใต้ปุ่ม */
+
+.nav-links a.active::after {
+
+    transform: scaleX(1);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffffff,
+            #a8f5e5,
+            #ffffff,
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px #ffffff,
+        0 0 18px #52d6b9,
+        0 0 25px #6ebbf5;
+}
+
+
+@keyframes activeAurora {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
