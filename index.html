@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Servamp Gallery | Mint & Vampire Fantasy</title>
+    <title>Servamp Gallery | Ultimate Vampire Fantasy</title>
 
     <style>
 
         /* =========================================================
-           🌿 SERVAMP GALLERY
-           MINT & SKY + VAMPIRE FANTASY
+           🦇 SERVAMP ULTIMATE GALLERY
+           MINT • SKY • VAMPIRE • FANTASY
         ========================================================= */
 
         * {
@@ -31,60 +31,106 @@
                 Tahoma,
                 sans-serif;
 
-            color: #e9ffff;
-
             min-height: 100vh;
+
+            color: #eaffff;
 
             overflow-x: hidden;
 
             background:
-                radial-gradient(
-                    circle at 20% 20%,
-                    rgba(90, 255, 218, 0.20),
-                    transparent 25%
-                ),
-                radial-gradient(
-                    circle at 80% 30%,
-                    rgba(70, 190, 255, 0.20),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 50% 90%,
-                    rgba(20, 255, 200, 0.15),
-                    transparent 30%
-                ),
                 linear-gradient(
-                    135deg,
-                    #03191d,
-                    #062d34,
-                    #064452,
-                    #061c30,
-                    #020c16
+                    120deg,
+                    #02151c,
+                    #063b43,
+                    #075d65,
+                    #06334d,
+                    #091c38,
+                    #032c31
                 );
 
-            background-size: 300% 300%;
+            background-size: 500% 500%;
 
             animation:
-                backgroundMove 18s ease infinite;
+                rainbowFantasy 18s ease infinite;
         }
 
 
         /* =========================================================
-           🌌 ANIMATED BACKGROUND
+           🌈 ANIMATED MULTI-COLOR BACKGROUND
         ========================================================= */
 
-        @keyframes backgroundMove {
+        @keyframes rainbowFantasy {
 
             0% {
                 background-position: 0% 50%;
+            }
+
+            25% {
+                background-position: 50% 0%;
             }
 
             50% {
                 background-position: 100% 50%;
             }
 
+            75% {
+                background-position: 50% 100%;
+            }
+
             100% {
                 background-position: 0% 50%;
+            }
+        }
+
+
+        /* =========================================================
+           🌌 MOVING LIGHT
+        ========================================================= */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            inset: -30%;
+
+            z-index: -5;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 20% 30%,
+                    rgba(61, 255, 222, .20),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 80% 20%,
+                    rgba(77, 180, 255, .20),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 50% 80%,
+                    rgba(92, 255, 184, .18),
+                    transparent 30%
+                );
+
+            animation:
+                lightMove 14s ease-in-out infinite alternate;
+        }
+
+        @keyframes lightMove {
+
+            0% {
+                transform: translate(-4%, -3%) scale(1);
+            }
+
+            50% {
+                transform: translate(5%, 4%) scale(1.12);
+            }
+
+            100% {
+                transform: translate(-2%, 7%) scale(1);
             }
         }
 
@@ -95,101 +141,101 @@
 
         .big-stars {
             position: fixed;
+
             inset: 0;
 
             pointer-events: none;
 
-            overflow: hidden;
+            z-index: 1;
 
-            z-index: 0;
+            overflow: hidden;
         }
 
         .big-stars span {
             position: absolute;
 
-            color: #bffff5;
-
-            font-size: 35px;
+            color: #c9fff8;
 
             text-shadow:
-                0 0 8px #8affea,
-                0 0 20px #4debd1,
-                0 0 40px rgba(80, 255, 230, 0.8);
+                0 0 8px #69ffe8,
+                0 0 20px #43e8d0,
+                0 0 45px #2dd6ff;
 
             animation:
-                starTwinkle 3s ease-in-out infinite,
-                starFloat 7s ease-in-out infinite;
+                starPulse 3s ease-in-out infinite,
+                starDrift 8s ease-in-out infinite;
         }
 
         .big-stars span:nth-child(1) {
             top: 8%;
-            left: 7%;
-            font-size: 55px;
+            left: 6%;
+            font-size: 65px;
         }
 
         .big-stars span:nth-child(2) {
-            top: 18%;
-            left: 25%;
+            top: 20%;
+            left: 27%;
             font-size: 30px;
-            animation-delay: 1s;
+            animation-delay: .7s;
         }
 
         .big-stars span:nth-child(3) {
-            top: 10%;
-            right: 15%;
-            font-size: 65px;
-            animation-delay: 2s;
+            top: 9%;
+            right: 18%;
+            font-size: 70px;
+            animation-delay: 1.3s;
         }
 
         .big-stars span:nth-child(4) {
-            top: 35%;
+            top: 38%;
             right: 5%;
-            font-size: 40px;
-            animation-delay: .5s;
+            font-size: 42px;
+            animation-delay: 2s;
         }
 
         .big-stars span:nth-child(5) {
-            top: 55%;
+            top: 57%;
             left: 5%;
-            font-size: 60px;
-            animation-delay: 1.5s;
+            font-size: 55px;
+            animation-delay: .4s;
         }
 
         .big-stars span:nth-child(6) {
-            top: 70%;
-            right: 13%;
-            font-size: 45px;
-            animation-delay: 2.5s;
+            top: 75%;
+            right: 12%;
+            font-size: 65px;
+            animation-delay: 1.8s;
         }
 
         .big-stars span:nth-child(7) {
             bottom: 8%;
-            left: 30%;
-            font-size: 35px;
+            left: 31%;
+            font-size: 38px;
+            animation-delay: 2.4s;
         }
 
         .big-stars span:nth-child(8) {
-            bottom: 15%;
-            right: 40%;
-            font-size: 60px;
-            animation-delay: 1.2s;
+            bottom: 17%;
+            right: 42%;
+            font-size: 58px;
+            animation-delay: 1s;
         }
 
-        @keyframes starTwinkle {
+        @keyframes starPulse {
 
             0%,
             100% {
                 opacity: .25;
-                transform: scale(.8);
+                transform: scale(.75);
             }
 
             50% {
                 opacity: 1;
-                transform: scale(1.2);
+                transform: scale(1.25);
             }
         }
 
-        @keyframes starFloat {
+        @keyframes starDrift {
 
             0%,
             100% {
@@ -197,7 +243,7 @@
             }
 
             50% {
-                margin-top: -18px;
+                margin-top: -20px;
             }
         }
 
@@ -209,61 +255,66 @@
         .moon {
             position: fixed;
 
-            top: 90px;
+            top: 80px;
             right: 8%;
 
-            width: 145px;
-            height: 145px;
+            width: 155px;
+            height: 155px;
 
             border-radius: 50%;
+
+            z-index: 2;
 
             background:
                 radial-gradient(
                     circle at 35% 30%,
                     #ffffff,
-                    #c9fff5 45%,
-                    #7ce8d5 75%,
-                    #45a99d
+                    #dffff9 38%,
+                    #91f0df 68%,
+                    #49a99f
                 );
 
             box-shadow:
-                0 0 20px #d9fff9,
-                0 0 50px rgba(102, 255, 228, .7),
-                0 0 100px rgba(51, 224, 200, .35);
-
-            opacity: .9;
-
-            z-index: 1;
+                0 0 20px #eaffff,
+                0 0 50px #65ffe9,
+                0 0 100px rgba(62, 255, 225, .45);
 
             animation:
                 moonFloat 6s ease-in-out infinite;
         }
 
-        .moon::before,
+        .moon::before {
+            content: "";
+
+            position: absolute;
+
+            width: 27px;
+            height: 27px;
+
+            top: 32px;
+            left: 38px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(50, 155, 145, .25);
+        }
+
         .moon::after {
             content: "";
 
             position: absolute;
 
-            border-radius: 50%;
-
-            background: rgba(48, 150, 143, .22);
-        }
-
-        .moon::before {
-            width: 25px;
-            height: 25px;
-
-            top: 30px;
-            left: 35px;
-        }
-
-        .moon::after {
             width: 18px;
             height: 18px;
 
             bottom: 35px;
-            right: 30px;
+            right: 32px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(50, 155, 145, .25);
         }
 
         @keyframes moonFloat {
@@ -274,56 +325,57 @@
             }
 
             50% {
-                transform: translateY(-15px);
+                transform: translateY(-18px);
             }
         }
 
 
         /* =========================================================
-           🌫️ FOG
+           🌫️ MOVING FOG
         ========================================================= */
 
         .fog {
             position: fixed;
 
             left: -20%;
-            bottom: 0;
+            bottom: -50px;
 
             width: 140%;
-            height: 250px;
+            height: 280px;
+
+            z-index: 3;
 
             pointer-events: none;
 
-            z-index: 2;
-
-            opacity: .30;
+            opacity: .32;
 
             filter: blur(25px);
 
             background:
                 radial-gradient(
                     ellipse,
-                    rgba(190, 255, 247, .55),
-                    transparent 65%
+                    rgba(210, 255, 249, .65),
+                    transparent 68%
                 );
 
-            animation: fogMove 14s ease-in-out infinite alternate;
+            animation:
+                fogMove 13s ease-in-out infinite alternate;
         }
 
         @keyframes fogMove {
 
             from {
-                transform: translateX(-8%);
+                transform: translateX(-7%);
             }
 
             to {
-                transform: translateX(8%);
+                transform: translateX(7%);
             }
         }
 
 
         /* =========================================================
-           🦇 BAT DECORATION
+           🦇 FLYING BATS
         ========================================================= */
 
         .bats {
@@ -335,38 +387,37 @@
 
             overflow: hidden;
 
-            z-index: 4;
+            z-index: 5;
         }
 
         .bat {
             position: absolute;
 
-            font-size: 35px;
+            left: -100px;
+
+            font-size: 34px;
 
             filter:
-                drop-shadow(0 0 8px rgba(84, 255, 225, .8));
+                drop-shadow(0 0 8px #53ffe4);
 
             animation:
-                batFly 12s linear infinite;
+                batFly linear infinite;
         }
 
         .bat:nth-child(1) {
-            top: 18%;
-            left: -10%;
-            animation-duration: 16s;
+            top: 17%;
+            animation-duration: 15s;
         }
 
         .bat:nth-child(2) {
-            top: 42%;
-            left: -15%;
-            animation-duration: 20s;
+            top: 43%;
+            animation-duration: 19s;
             animation-delay: 3s;
         }
 
         .bat:nth-child(3) {
             top: 70%;
-            left: -10%;
-            animation-duration: 18s;
+            animation-duration: 17s;
             animation-delay: 6s;
         }
 
@@ -374,10 +425,9 @@
 
             0% {
                 transform:
-                    translateX(0)
+                    translateX(-100px)
                     translateY(0)
-                    scale(.7)
-                    rotate(-5deg);
+                    scale(.6);
 
                 opacity: 0;
             }
@@ -386,24 +436,23 @@
                 opacity: 1;
             }
 
-            50% {
+            45% {
                 transform:
-                    translateX(60vw)
-                    translateY(-70px)
-                    scale(1)
-                    rotate(5deg);
+                    translateX(55vw)
+                    translateY(-80px)
+                    rotate(5deg)
+                    scale(1);
             }
 
-            90% {
+            80% {
                 opacity: 1;
             }
 
             100% {
                 transform:
                     translateX(120vw)
-                    translateY(50px)
-                    scale(.6)
-                    rotate(-5deg);
+                    translateY(60px)
+                    scale(.6);
 
                 opacity: 0;
             }
@@ -411,7 +460,7 @@
 
 
         /* =========================================================
-           🍃 FLOATING LEAVES
+           🍃 LEAVES
         ========================================================= */
 
         .leaves {
@@ -419,31 +468,32 @@
 
             inset: 0;
 
-            pointer-events: none;
-
             overflow: hidden;
 
-            z-index: 3;
+            pointer-events: none;
+
+            z-index: 4;
         }
 
         .leaf {
             position: absolute;
 
+            top: -50px;
+
             font-size: 25px;
 
-            color: #82ffe5;
-
             filter:
-                drop-shadow(0 0 8px rgba(92, 255, 224, .7));
+                drop-shadow(0 0 8px rgba(76, 255, 224, .7));
 
-            animation: leafFall linear infinite;
+            animation:
+                leafFall linear infinite;
         }
 
         @keyframes leafFall {
 
             0% {
                 transform:
-                    translateY(-100px)
+                    translateY(-60px)
                     translateX(0)
                     rotate(0deg);
 
@@ -456,15 +506,15 @@
 
             50% {
                 transform:
-                    translateY(50vh)
-                    translateX(80px)
+                    translateY(55vh)
+                    translateX(100px)
                     rotate(180deg);
             }
 
             100% {
                 transform:
                     translateY(110vh)
-                    translateX(-100px)
+                    translateX(-80px)
                     rotate(360deg);
 
                 opacity: 0;
@@ -473,7 +523,184 @@
 
 
         /* =========================================================
-           🧭 HEADER
+           🔮 LOADING SCREEN
+        ========================================================= */
+
+        #loader {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 99999;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-direction: column;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #0a4b50,
+                    #031b25 50%,
+                    #010910 100%
+                );
+
+            transition:
+                opacity 1s ease,
+                visibility 1s ease;
+        }
+
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-moon {
+            position: relative;
+
+            width: 130px;
+            height: 130px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    white,
+                    #c8fff6 45%,
+                    #52dbc4
+                );
+
+            box-shadow:
+                0 0 25px white,
+                0 0 60px #4ffff0,
+                0 0 120px #22d9c0;
+
+            animation:
+                loaderMoon 2s ease-in-out infinite;
+        }
+
+        @keyframes loaderMoon {
+
+            0%,
+            100% {
+                transform: scale(.9);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .loader-ring {
+            position: absolute;
+
+            width: 210px;
+            height: 210px;
+
+            border-radius: 50%;
+
+            border:
+                2px solid rgba(117, 255, 237, .7);
+
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+
+            animation:
+                ringSpin 2s linear infinite;
+        }
+
+        @keyframes ringSpin {
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loader-title {
+            margin-top: 50px;
+
+            font-size: 30px;
+
+            font-weight: 900;
+
+            letter-spacing: 5px;
+
+            color: #dffff9;
+
+            text-shadow:
+                0 0 10px #5ffff0,
+                0 0 30px #4ffff0;
+        }
+
+        .loader-subtitle {
+            margin-top: 12px;
+
+            color: #9ffff2;
+
+            letter-spacing: 2px;
+        }
+
+        .loader-bar {
+            width: 280px;
+            height: 5px;
+
+            margin-top: 30px;
+
+            border-radius: 100px;
+
+            overflow: hidden;
+
+            background:
+                rgba(255, 255, 255, .1);
+
+            box-shadow:
+                0 0 15px rgba(75, 255, 230, .3);
+        }
+
+        .loader-progress {
+            width: 0%;
+            height: 100%;
+
+            border-radius: 100px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #36d8ff,
+                    #50ffe1,
+                    white
+                );
+
+            box-shadow:
+                0 0 15px #53ffe5;
+
+            animation:
+                loading 2.5s ease forwards;
+        }
+
+        @keyframes loading {
+
+            to {
+                width: 100%;
+            }
+        }
+
+        .loader-hint {
+            margin-top: 18px;
+
+            color: #74bcb8;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           ✨ HEADER
         ========================================================= */
 
         header {
@@ -486,134 +713,59 @@
             padding:
                 90px
                 20px
-                70px;
-
-            overflow: hidden;
+                65px;
         }
-
-        header::before {
-            content: "";
-
-            position: absolute;
-
-            width: 500px;
-            height: 500px;
-
-            top: -250px;
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(69, 255, 219, .20),
-                    transparent 70%
-                );
-
-            pointer-events: none;
-        }
-
-
-        /* =========================================================
-           ✨ TITLE
-        ========================================================= */
 
         header h1 {
-            position: relative;
-
             font-size:
-                clamp(35px, 6vw, 72px);
+                clamp(36px, 6vw, 75px);
 
             font-weight: 900;
 
             letter-spacing: 3px;
 
-            color: #dffff9;
+            color: #e8fffc;
 
             text-shadow:
-                0 0 8px #6effe5,
-                0 0 20px #31d8c0,
-                0 0 45px rgba(38, 255, 216, .8);
+                0 0 8px #72ffe9,
+                0 0 20px #44e8d0,
+                0 0 50px #28d8ff;
 
             animation:
                 titleGlow 3s ease-in-out infinite;
-
-            cursor: default;
-        }
-
-        header h1:hover {
-            animation:
-                titleShake .5s ease;
         }
 
         @keyframes titleGlow {
 
             0%,
             100% {
-                text-shadow:
-                    0 0 8px #6effe5,
-                    0 0 20px #31d8c0,
-                    0 0 45px rgba(38, 255, 216, .7);
+                filter: brightness(.95);
             }
 
             50% {
-                text-shadow:
-                    0 0 15px #ffffff,
-                    0 0 35px #5ffff0,
-                    0 0 70px #2effd1;
+                filter: brightness(1.35);
             }
         }
-
-        @keyframes titleShake {
-
-            25% {
-                transform: translateX(-5px);
-            }
-
-            50% {
-                transform: translateX(5px);
-            }
-
-            75% {
-                transform: translateX(-3px);
-            }
-
-            100% {
-                transform: translateX(0);
-            }
-        }
-
 
         header p {
-            position: relative;
-
             margin-top: 20px;
 
-            font-size: 19px;
+            font-size: 18px;
 
-            color: #b9fff3;
-
-            letter-spacing: 1px;
+            color: #bafff4;
 
             text-shadow:
-                0 0 10px rgba(100, 255, 228, .8);
+                0 0 12px #48ffe2;
         }
 
-
-        /* =========================================================
-           💎 DECORATION LINE
-        ========================================================= */
-
         .magic-line {
-            position: relative;
-
-            width: 230px;
+            width: 250px;
             height: 4px;
 
-            margin: 30px auto 0;
+            margin:
+                30px
+                auto
+                0;
 
             border-radius: 100px;
 
@@ -621,21 +773,21 @@
                 linear-gradient(
                     90deg,
                     transparent,
-                    #4ffff0,
+                    #45ffe5,
                     white,
-                    #4ffff0,
+                    #45ffe5,
                     transparent
                 );
 
             box-shadow:
-                0 0 10px #43ffe8,
-                0 0 30px #43ffe8;
+                0 0 12px #45ffe5,
+                0 0 35px #45ffe5;
 
             animation:
-                lineGlow 2s ease-in-out infinite;
+                linePulse 2s ease-in-out infinite;
         }
 
-        @keyframes lineGlow {
+        @keyframes linePulse {
 
             0%,
             100% {
@@ -662,7 +814,7 @@
             margin: auto;
 
             padding:
-                30px
+                25px
                 30px
                 100px;
 
@@ -689,33 +841,92 @@
             background:
                 linear-gradient(
                     145deg,
-                    rgba(9, 58, 64, .92),
-                    rgba(4, 29, 40, .96)
+                    rgba(7, 58, 65, .94),
+                    rgba(2, 24, 35, .97)
                 );
 
             border:
-                1px solid rgba(113, 255, 231, .35);
+                1px solid rgba(103, 255, 232, .4);
 
             box-shadow:
-                0 15px 45px rgba(0, 0, 0, .45),
-                inset 0 0 30px rgba(74, 255, 224, .04);
-
-            transform:
-                translateY(50px);
+                0 20px 50px rgba(0, 0, 0, .5),
+                0 0 20px rgba(74, 255, 224, .08);
 
             opacity: 0;
 
+            transform:
+                translateY(70px)
+                rotate(-2deg);
+
             transition:
-                transform .7s ease,
-                opacity .7s ease,
-                box-shadow .5s ease,
-                border-color .5s ease;
+                opacity .8s ease,
+                transform .6s ease,
+                box-shadow .4s ease;
         }
 
         .card.show {
-            transform: translateY(0);
             opacity: 1;
+
+            transform:
+                translateY(0)
+                rotate(0);
         }
+
+        .card:nth-child(1) {
+            animation:
+                cardFloat1 5s ease-in-out infinite;
+        }
+
+        .card:nth-child(2) {
+            animation:
+                cardFloat2 6s ease-in-out infinite;
+        }
+
+        .card:nth-child(3) {
+            animation:
+                cardFloat3 5.5s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat1 {
+
+            0%,
+            100% {
+                margin-top: 0;
+            }
+
+            50% {
+                margin-top: -12px;
+            }
+        }
+
+        @keyframes cardFloat2 {
+
+            0%,
+            100% {
+                margin-top: 0;
+            }
+
+            50% {
+                margin-top: 15px;
+            }
+        }
+
+        @keyframes cardFloat3 {
+
+            0%,
+            100% {
+                margin-top: 0;
+            }
+
+            50% {
+                margin-top: -17px;
+            }
+        }
+
+
+        /* =========================================================
+           🌈 ANIMATED CARD BORDER
+        ========================================================= */
 
         .card::before {
             content: "";
@@ -730,13 +941,18 @@
 
             background:
                 linear-gradient(
-                    135deg,
-                    #54ffe6,
+                    120deg,
+                    #3ffff0,
                     transparent,
-                    #52baff,
+                    #49aaff,
                     transparent,
-                    #54ffe6
+                    #3ffff0
                 );
+
+            background-size: 300% 300%;
+
+            animation:
+                borderMove 5s linear infinite;
 
             -webkit-mask:
                 linear-gradient(#fff 0 0) content-box,
@@ -746,42 +962,28 @@
 
             mask-composite: exclude;
 
-            opacity: .65;
-
             pointer-events: none;
-
-            animation:
-                borderRotate 5s linear infinite;
         }
 
-        @keyframes borderRotate {
+        @keyframes borderMove {
 
             0% {
-                filter: hue-rotate(0deg);
+                background-position: 0% 50%;
             }
 
             100% {
-                filter: hue-rotate(360deg);
+                background-position: 300% 50%;
             }
         }
 
-
-        /* =========================================================
-           🖱️ CARD HOVER
-        ========================================================= */
-
         .card:hover {
-            transform:
-                translateY(-18px)
-                scale(1.025);
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, .6),
+                0 0 35px rgba(73, 255, 226, .3),
+                0 0 90px rgba(73, 255, 226, .12);
 
             border-color:
-                rgba(108, 255, 237, .9);
-
-            box-shadow:
-                0 30px 70px rgba(0, 0, 0, .55),
-                0 0 25px rgba(78, 255, 225, .25),
-                0 0 70px rgba(78, 255, 225, .12);
+                rgba(123, 255, 239, .9);
         }
 
 
@@ -792,9 +994,9 @@
         .image-box {
             position: relative;
 
-            overflow: hidden;
-
             height: 330px;
+
+            overflow: hidden;
         }
 
         .image-box::after {
@@ -807,11 +1009,9 @@
             background:
                 linear-gradient(
                     180deg,
-                    transparent 50%,
-                    rgba(1, 20, 28, .65)
+                    transparent 45%,
+                    rgba(1, 16, 23, .75)
                 );
-
-            pointer-events: none;
         }
 
         .card img {
@@ -823,24 +1023,19 @@
             display: block;
 
             transition:
-                transform .8s cubic-bezier(.2,.8,.2,1),
+                transform .8s ease,
                 filter .5s ease;
         }
 
         .card:hover img {
             transform:
                 scale(1.12)
-                rotate(1deg);
+                rotate(1.5deg);
 
             filter:
                 brightness(1.1)
-                saturate(1.15);
+                saturate(1.2);
         }
-
-
-        /* =========================================================
-           🦇 IMAGE BADGE
-        ========================================================= */
 
         .image-badge {
             position: absolute;
@@ -852,24 +1047,25 @@
 
             padding:
                 8px
-                14px;
+                15px;
 
             border-radius: 100px;
 
             background:
-                rgba(2, 26, 31, .75);
+                rgba(1, 27, 34, .78);
 
             border:
-                1px solid rgba(122, 255, 235, .55);
+                1px solid rgba(117, 255, 237, .65);
 
-            color: #cffff8;
+            color: #d5fff9;
 
-            font-size: 13px;
+            font-size: 12px;
 
-            backdrop-filter: blur(10px);
+            backdrop-filter:
+                blur(10px);
 
             box-shadow:
-                0 0 20px rgba(72, 255, 224, .2);
+                0 0 20px rgba(74, 255, 224, .2);
         }
 
 
@@ -884,14 +1080,14 @@
         }
 
         .content h2 {
-            color: #8ffff0;
+            color: #92fff1;
 
             font-size: 27px;
 
             margin-bottom: 15px;
 
             text-shadow:
-                0 0 8px rgba(80, 255, 226, .65);
+                0 0 10px rgba(80, 255, 226, .6);
 
             transition: .3s;
         }
@@ -902,58 +1098,289 @@
             letter-spacing: 1px;
 
             text-shadow:
-                0 0 10px #fff,
-                0 0 25px #48ffe2,
-                0 0 45px #48ffe2;
+                0 0 10px white,
+                0 0 25px #4dffe3,
+                0 0 50px #4dffe3;
         }
 
         .content p {
-            color: #c6e9e6;
+            color: #c7e9e6;
 
             font-size: 15px;
 
             line-height: 1.9;
 
             white-space: pre-line;
-        }
-
-
-        /* =========================================================
-           ✨ TEXT HOVER
-        ========================================================= */
-
-        .content p,
-        .content h2 {
-            cursor: default;
-        }
-
-        .content p:hover {
-            color: #ffffff;
-
-            text-shadow:
-                0 0 5px rgba(120, 255, 239, .5);
 
             transition: .3s;
         }
 
+        .content p:hover {
+            color: white;
 
-        /* =========================================================
-           🌟 CARD NUMBER
-        ========================================================= */
+            text-shadow:
+                0 0 8px rgba(125, 255, 239, .45);
+        }
 
         .number {
             position: absolute;
 
-            top: 20px;
+            top: 18px;
             right: 25px;
 
-            font-size: 60px;
+            font-size: 65px;
 
             font-weight: 900;
 
-            color: rgba(107, 255, 235, .08);
+            color:
+                rgba(95, 255, 231, .07);
 
             pointer-events: none;
+        }
+
+
+        /* =========================================================
+           ✨ PARTICLES
+        ========================================================= */
+
+        #particles {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 8;
+
+            pointer-events: none;
+
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+
+            bottom: -40px;
+
+            color: #9cfff3;
+
+            text-shadow:
+                0 0 8px #4dffe2,
+                0 0 20px #4dffe2;
+
+            animation:
+                particleUp linear infinite;
+        }
+
+        @keyframes particleUp {
+
+            0% {
+                transform:
+                    translateY(0)
+                    rotate(0)
+                    scale(.5);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            50% {
+                transform:
+                    translateY(-50vh)
+                    translateX(70px)
+                    rotate(180deg)
+                    scale(1);
+            }
+
+            100% {
+                transform:
+                    translateY(-110vh)
+                    translateX(-70px)
+                    rotate(360deg)
+                    scale(.4);
+
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================================================
+           ✨ STAR CURSOR
+        ========================================================= */
+
+        #cursorStar {
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            z-index: 99998;
+
+            pointer-events: none;
+
+            color: white;
+
+            font-size: 23px;
+
+            transform:
+                translate(-50%, -50%);
+
+            text-shadow:
+                0 0 6px white,
+                0 0 15px #4dffe5,
+                0 0 30px #4dffe5;
+
+            transition:
+                left .05s linear,
+                top .05s linear;
+        }
+
+
+        /* =========================================================
+           💫 MOUSE TRAIL
+        ========================================================= */
+
+        .mouse-spark {
+            position: fixed;
+
+            z-index: 99997;
+
+            pointer-events: none;
+
+            color: #cffff8;
+
+            font-size: 12px;
+
+            text-shadow:
+                0 0 8px #5ffff0,
+                0 0 18px #5ffff0;
+
+            animation:
+                mouseSpark .8s ease-out forwards;
+        }
+
+        @keyframes mouseSpark {
+
+            0% {
+                opacity: 1;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(.6);
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    translate(
+                        calc(-50% + var(--x)),
+                        calc(-50% + var(--y))
+                    )
+                    scale(1.5);
+            }
+        }
+
+
+        /* =========================================================
+           💥 CLICK EFFECT
+        ========================================================= */
+
+        .click-effect {
+            position: fixed;
+
+            z-index: 99999;
+
+            pointer-events: none;
+
+            font-size: 22px;
+
+            animation:
+                clickEffect .9s ease-out forwards;
+        }
+
+        @keyframes clickEffect {
+
+            0% {
+                opacity: 1;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(.5)
+                    rotate(0deg);
+            }
+
+            100% {
+                opacity: 0;
+
+                transform:
+                    translate(
+                        calc(-50% + var(--move-x)),
+                        calc(-50% + var(--move-y))
+                    )
+                    scale(1.7)
+                    rotate(180deg);
+            }
+        }
+
+
+        /* =========================================================
+           🔝 TOP BUTTON
+        ========================================================= */
+
+        #topButton {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            z-index: 100;
+
+            width: 56px;
+            height: 56px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid rgba(120, 255, 239, .8);
+
+            background:
+                rgba(2, 35, 43, .85);
+
+            color: #9efff3;
+
+            font-size: 23px;
+
+            cursor: pointer;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition: .3s;
+
+            backdrop-filter:
+                blur(10px);
+
+            box-shadow:
+                0 0 20px rgba(76, 255, 226, .3);
+        }
+
+        #topButton.show {
+            opacity: 1;
+
+            pointer-events: auto;
+        }
+
+        #topButton:hover {
+            transform:
+                scale(1.12)
+                translateY(-5px);
+
+            box-shadow:
+                0 0 25px #49ffe2,
+                0 0 55px rgba(73, 255, 226, .4);
         }
 
 
@@ -970,225 +1397,114 @@
 
             padding: 60px 20px;
 
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(2, 19, 27, .3),
-                    rgba(1, 10, 17, .95)
-                );
-
             border-top:
-                1px solid rgba(94, 255, 228, .25);
+                1px solid rgba(100, 255, 234, .25);
+
+            background:
+                rgba(1, 13, 20, .75);
 
             box-shadow:
-                0 -10px 40px rgba(0, 0, 0, .3);
+                0 -15px 50px rgba(0, 0, 0, .3);
         }
 
-        footer .footer-title {
+        footer h3 {
+            color: #91fff1;
+
+            margin-bottom: 12px;
+
             font-size: 24px;
 
-            font-weight: 800;
-
-            color: #8ffff0;
-
-            margin-bottom: 10px;
-
             text-shadow:
-                0 0 15px #45ffe2;
+                0 0 15px #48ffe2;
         }
 
         footer p {
-            color: #a9cfcb;
-
             margin: 7px;
+
+            color: #a8ceca;
         }
 
 
         /* =========================================================
-           ✨ FLOATING PARTICLES
+           🎵 MUSIC PLAYER
         ========================================================= */
 
-        .particles {
+        #musicBox {
             position: fixed;
 
-            inset: 0;
+            left: 20px;
+            bottom: 20px;
 
-            pointer-events: none;
+            z-index: 500;
 
-            z-index: 8;
+            display: flex;
 
-            overflow: hidden;
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 10px 14px;
+
+            border-radius: 100px;
+
+            background:
+                rgba(2, 31, 39, .82);
+
+            border:
+                1px solid rgba(105, 255, 236, .5);
+
+            backdrop-filter:
+                blur(12px);
+
+            box-shadow:
+                0 0 20px rgba(75, 255, 226, .18);
         }
 
-        .particle {
-            position: absolute;
-
-            bottom: -50px;
-
-            color: #8effed;
-
-            text-shadow:
-                0 0 8px #42ffe2,
-                0 0 18px #42ffe2;
-
-            animation:
-                particleFloat linear infinite;
-        }
-
-        @keyframes particleFloat {
-
-            0% {
-                transform:
-                    translateY(0)
-                    rotate(0deg)
-                    scale(.5);
-
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            50% {
-                transform:
-                    translateY(-50vh)
-                    translateX(60px)
-                    rotate(180deg)
-                    scale(1);
-            }
-
-            100% {
-                transform:
-                    translateY(-110vh)
-                    translateX(-80px)
-                    rotate(360deg)
-                    scale(.4);
-
-                opacity: 0;
-            }
-        }
-
-
-        /* =========================================================
-           💗 MAGIC CURSOR
-        ========================================================= */
-
-        .cursor-heart {
-            position: fixed;
-
-            z-index: 9999;
-
-            pointer-events: none;
-
-            font-size: 20px;
-
-            transform:
-                translate(-50%, -50%);
-
-            filter:
-                drop-shadow(0 0 8px #67ffe8)
-                drop-shadow(0 0 15px #67ffe8);
-
-            transition:
-                left .08s linear,
-                top .08s linear;
-        }
-
-
-        /* =========================================================
-           ✨ CLICK SPARK
-        ========================================================= */
-
-        .click-spark {
-            position: fixed;
-
-            pointer-events: none;
-
-            z-index: 99999;
-
-            color: #ffffff;
-
-            font-size: 18px;
-
-            animation:
-                clickSpark .7s ease-out forwards;
-        }
-
-        @keyframes clickSpark {
-
-            0% {
-                transform:
-                    translate(-50%, -50%)
-                    scale(.5);
-
-                opacity: 1;
-            }
-
-            100% {
-                transform:
-                    translate(-50%, -130px)
-                    scale(1.5);
-
-                opacity: 0;
-            }
-        }
-
-
-        /* =========================================================
-           🔝 SCROLL TOP
-        ========================================================= */
-
-        #topButton {
-            position: fixed;
-
-            right: 25px;
-            bottom: 25px;
-
-            z-index: 100;
-
-            width: 55px;
-            height: 55px;
-
-            border: 1px solid rgba(127, 255, 238, .7);
+        #musicButton {
+            width: 42px;
+            height: 42px;
 
             border-radius: 50%;
 
+            border:
+                1px solid rgba(115, 255, 239, .7);
+
             background:
-                rgba(3, 39, 45, .8);
+                rgba(55, 211, 190, .15);
 
-            color: #a8fff3;
-
-            font-size: 23px;
+            color: #cafff7;
 
             cursor: pointer;
+
+            font-size: 18px;
+        }
+
+        #musicButton:hover {
+            box-shadow:
+                0 0 20px #4dffe2;
+
+            transform:
+                scale(1.08);
+        }
+
+        #musicText {
+            font-size: 12px;
+
+            color: #aafff2;
+        }
+
+        #youtubeMusic {
+            position: fixed;
+
+            width: 1px;
+            height: 1px;
 
             opacity: 0;
 
             pointer-events: none;
 
-            transition: .3s;
-
-            backdrop-filter: blur(10px);
-
-            box-shadow:
-                0 0 20px rgba(76, 255, 226, .25);
-        }
-
-        #topButton.show {
-            opacity: 1;
-
-            pointer-events: auto;
-        }
-
-        #topButton:hover {
-            transform:
-                translateY(-5px)
-                scale(1.1);
-
-            box-shadow:
-                0 0 25px #49ffe2,
-                0 0 50px rgba(73, 255, 226, .4);
+            left: -100px;
+            top: -100px;
         }
 
 
@@ -1199,7 +1515,8 @@
         @media (max-width: 1000px) {
 
             .gallery {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .moon {
@@ -1211,11 +1528,11 @@
         @media (max-width: 650px) {
 
             header {
-                padding-top: 70px;
+                padding-top: 65px;
             }
 
             header h1 {
-                font-size: 35px;
+                font-size: 36px;
             }
 
             .gallery {
@@ -1224,7 +1541,7 @@
                 padding:
                     20px
                     15px
-                    70px;
+                    80px;
             }
 
             .image-box {
@@ -1235,18 +1552,19 @@
                 width: 80px;
                 height: 80px;
 
-                top: 30px;
+                top: 25px;
                 right: 20px;
 
-                opacity: .5;
-            }
-
-            .bat {
-                font-size: 25px;
+                opacity: .45;
             }
 
             .content {
-                padding: 24px;
+                padding: 25px;
+            }
+
+            #musicBox {
+                left: 10px;
+                bottom: 10px;
             }
         }
 
@@ -1255,6 +1573,35 @@
 
 
 <body>
+
+
+    <!-- =========================================================
+         🔮 LOADING SCREEN
+    ========================================================= -->
+
+    <div id="loader">
+
+        <div class="loader-ring"></div>
+
+        <div class="loader-moon"></div>
+
+        <div class="loader-title">
+            SERVAMP
+        </div>
+
+        <div class="loader-subtitle">
+            ✦ MINT & VAMPIRE FANTASY ✦
+        </div>
+
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+
+        <div class="loader-hint">
+            กำลังเปิดประตูสู่โลกของเหล่าแวมไพร์...
+        </div>
+
+    </div>
 
 
     <!-- =========================================================
@@ -1308,13 +1655,40 @@
 
     <div class="leaves">
 
-        <span class="leaf" style="left:5%; animation-duration:12s;">🍃</span>
-        <span class="leaf" style="left:15%; animation-duration:15s; animation-delay:2s;">🍂</span>
-        <span class="leaf" style="left:28%; animation-duration:11s; animation-delay:4s;">🍃</span>
-        <span class="leaf" style="left:42%; animation-duration:17s; animation-delay:1s;">🌿</span>
-        <span class="leaf" style="left:58%; animation-duration:13s; animation-delay:3s;">🍃</span>
-        <span class="leaf" style="left:72%; animation-duration:16s;">🍂</span>
-        <span class="leaf" style="left:88%; animation-duration:12s; animation-delay:5s;">🍃</span>
+        <span class="leaf"
+              style="left:5%;animation-duration:12s;">
+            🍃
+        </span>
+
+        <span class="leaf"
+              style="left:18%;animation-duration:15s;animation-delay:2s;">
+            🍂
+        </span>
+
+        <span class="leaf"
+              style="left:30%;animation-duration:11s;animation-delay:4s;">
+            🍃
+        </span>
+
+        <span class="leaf"
+              style="left:45%;animation-duration:17s;">
+            🌿
+        </span>
+
+        <span class="leaf"
+              style="left:60%;animation-duration:13s;animation-delay:3s;">
+            🍃
+        </span>
+
+        <span class="leaf"
+              style="left:76%;animation-duration:16s;">
+            🍂
+        </span>
+
+        <span class="leaf"
+              style="left:90%;animation-duration:12s;animation-delay:5s;">
+            🍃
+        </span>
 
     </div>
 
@@ -1323,16 +1697,41 @@
          ✨ PARTICLES
     ========================================================= -->
 
-    <div class="particles" id="particles"></div>
+    <div id="particles"></div>
 
 
     <!-- =========================================================
-         💗 CURSOR
+         ⭐ STAR CURSOR
     ========================================================= -->
 
-    <div class="cursor-heart" id="cursorHeart">
-        💚
+    <div id="cursorStar">
+        ✦
     </div>
+
+
+    <!-- =========================================================
+         🎵 MUSIC
+    ========================================================= -->
+
+    <div id="musicBox">
+
+        <button id="musicButton">
+            ▶
+        </button>
+
+        <span id="musicText">
+            Servamp Fantasy Music
+        </span>
+
+    </div>
+
+
+    <iframe
+        id="youtubeMusic"
+        src="https://www.youtube.com/embed/k87-z7DoIcE?enablejsapi=1&loop=1&playlist=k87-z7DoIcE"
+        title="Background Music"
+        allow="autoplay">
+    </iframe>
 
 
     <!-- =========================================================
@@ -1346,8 +1745,9 @@
         </h1>
 
         <p>
-            แกลเลอรีตัวละครที่ฉันชื่นชอบ
-            ✦ Mint & Sky Vampire Fantasy ✦
+            ✦ แกลเลอรีตัวละครที่ฉันชื่นชอบ ✦
+            <br>
+            Mint • Sky • Vampire • Fantasy
         </p>
 
         <div class="magic-line"></div>
@@ -1363,7 +1763,7 @@
 
 
         <!-- =====================================================
-             CARD 1
+             CHARACTER 01
         ====================================================== -->
 
         <article class="card">
@@ -1380,7 +1780,6 @@
                 >
 
             </div>
-
 
             <div class="content">
 
@@ -1410,7 +1809,7 @@
 
 
         <!-- =====================================================
-             CARD 2
+             CHARACTER 02
         ====================================================== -->
 
         <article class="card">
@@ -1427,7 +1826,6 @@
                 >
 
             </div>
-
 
             <div class="content">
 
@@ -1457,7 +1855,7 @@
 
 
         <!-- =====================================================
-             CARD 3
+             CHARACTER 03
         ====================================================== -->
 
         <article class="card">
@@ -1474,7 +1872,6 @@
                 >
 
             </div>
-
 
             <div class="content">
 
@@ -1502,7 +1899,6 @@
 
         </article>
 
-
     </section>
 
 
@@ -1512,9 +1908,9 @@
 
     <footer>
 
-        <div class="footer-title">
-            🦇 SERVAMP ✦ MINT FANTASY 🌙
-        </div>
+        <h3>
+            🦇 SERVAMP ✦ MINT VAMPIRE FANTASY 🌙
+        </h3>
 
         <p>
             © 2026 แกลเลอรีรูปภาพของฉัน
@@ -1536,18 +1932,40 @@
     </button>
 
 
-    <!-- =========================================================
-         ⚙️ JAVASCRIPT
-    ========================================================= -->
-
     <script>
+
+        /* =====================================================
+           🔮 LOADING SCREEN
+        ===================================================== */
+
+        window.addEventListener(
+            "load",
+            () => {
+
+                setTimeout(
+                    () => {
+
+                        document
+                            .getElementById("loader")
+                            .classList
+                            .add("hide");
+
+                    },
+                    2800
+                );
+
+            }
+        );
+
 
         /* =====================================================
            ✨ FLOATING PARTICLES
         ===================================================== */
 
         const particleContainer =
-            document.getElementById("particles");
+            document.getElementById(
+                "particles"
+            );
 
         const particleSymbols = [
             "✦",
@@ -1556,13 +1974,16 @@
             "✨",
             "💚",
             "♡",
-            "🍃"
+            "🍃",
+            "🦇"
         ];
 
-        for (let i = 0; i < 45; i++) {
+        for (let i = 0; i < 55; i++) {
 
             const particle =
-                document.createElement("span");
+                document.createElement(
+                    "span"
+                );
 
             particle.className =
                 "particle";
@@ -1580,86 +2001,204 @@
                 Math.random() * 100 + "%";
 
             particle.style.fontSize =
-                (10 + Math.random() * 18) + "px";
+                (9 + Math.random() * 17)
+                + "px";
 
             particle.style.animationDuration =
-                (7 + Math.random() * 12) + "s";
+                (7 + Math.random() * 13)
+                + "s";
 
             particle.style.animationDelay =
-                (Math.random() * 10) + "s";
+                (Math.random() * 12)
+                + "s";
 
-            particleContainer.appendChild(
-                particle
-            );
+            particleContainer
+                .appendChild(particle);
         }
 
 
         /* =====================================================
-           🖱️ HEART CURSOR
+           ⭐ STAR CURSOR
         ===================================================== */
 
-        const cursorHeart =
-            document.getElementById("cursorHeart");
+        const cursorStar =
+            document.getElementById(
+                "cursorStar"
+            );
+
+        let lastMouseSpark = 0;
 
         document.addEventListener(
             "mousemove",
             (event) => {
 
-                cursorHeart.style.left =
+                cursorStar.style.left =
                     event.clientX + "px";
 
-                cursorHeart.style.top =
+                cursorStar.style.top =
                     event.clientY + "px";
+
+
+                /* ประกายระยิบระยับตามเมาส์ */
+
+                const now =
+                    Date.now();
+
+                if (
+                    now - lastMouseSpark > 45
+                ) {
+
+                    lastMouseSpark = now;
+
+                    createMouseSpark(
+                        event.clientX,
+                        event.clientY
+                    );
+                }
+
             }
         );
 
 
+        function createMouseSpark(x, y) {
+
+            const spark =
+                document.createElement(
+                    "span"
+                );
+
+            spark.className =
+                "mouse-spark";
+
+            spark.textContent =
+                [
+                    "✦",
+                    "✧",
+                    "⋆",
+                    "✨"
+                ][
+                    Math.floor(
+                        Math.random() * 4
+                    )
+                ];
+
+            spark.style.left =
+                x + "px";
+
+            spark.style.top =
+                y + "px";
+
+            spark.style.setProperty(
+                "--x",
+                (Math.random() * 30 - 15)
+                + "px"
+            );
+
+            spark.style.setProperty(
+                "--y",
+                (Math.random() * 30 - 15)
+                + "px"
+            );
+
+            document.body.appendChild(
+                spark
+            );
+
+            setTimeout(
+                () => spark.remove(),
+                800
+            );
+        }
+
+
         /* =====================================================
-           💫 CLICK SPARK
+           💥 CLICK EMOJI EFFECT
         ===================================================== */
 
         document.addEventListener(
             "click",
             (event) => {
 
-                const spark =
-                    document.createElement("div");
+                const effects = [
+                    "✨",
+                    "✦",
+                    "✧",
+                    "💚",
+                    "💫",
+                    "🌟",
+                    "🍃",
+                    "🦇",
+                    "🌙",
+                    "♡"
+                ];
 
-                spark.className =
-                    "click-spark";
+                for (
+                    let i = 0;
+                    i < 9;
+                    i++
+                ) {
 
-                spark.textContent =
-                    ["✨", "✦", "💚", "✧"]
-                    [
-                        Math.floor(
-                            Math.random() * 4
-                        )
-                    ];
+                    const effect =
+                        document.createElement(
+                            "span"
+                        );
 
-                spark.style.left =
-                    event.clientX + "px";
+                    effect.className =
+                        "click-effect";
 
-                spark.style.top =
-                    event.clientY + "px";
+                    effect.textContent =
+                        effects[
+                            Math.floor(
+                                Math.random()
+                                *
+                                effects.length
+                            )
+                        ];
 
-                document.body.appendChild(
-                    spark
-                );
+                    effect.style.left =
+                        event.clientX + "px";
 
-                setTimeout(
-                    () => spark.remove(),
-                    700
-                );
+                    effect.style.top =
+                        event.clientY + "px";
+
+                    effect.style.setProperty(
+                        "--move-x",
+                        (Math.random() * 180 - 90)
+                        + "px"
+                    );
+
+                    effect.style.setProperty(
+                        "--move-y",
+                        (Math.random() * 180 - 100)
+                        + "px"
+                    );
+
+                    effect.style.animationDelay =
+                        (Math.random() * .12)
+                        + "s";
+
+                    document.body.appendChild(
+                        effect
+                    );
+
+                    setTimeout(
+                        () => effect.remove(),
+                        1000
+                    );
+                }
+
             }
         );
 
 
         /* =====================================================
-           🃏 SCROLL REVEAL
+           🃏 CARD SCROLL REVEAL
         ===================================================== */
 
         const cards =
-            document.querySelectorAll(".card");
+            document.querySelectorAll(
+                ".card"
+            );
 
         const observer =
             new IntersectionObserver(
@@ -1676,10 +2215,12 @@
                                     .classList
                                     .add("show");
 
-                                observer.unobserve(
-                                    entry.target
-                                );
+                                observer
+                                    .unobserve(
+                                        entry.target
+                                    );
                             }
+
                         }
                     );
 
@@ -1689,55 +2230,14 @@
                 }
             );
 
-
         cards.forEach(
-            (card) => observer.observe(card)
+            card =>
+                observer.observe(card)
         );
 
 
         /* =====================================================
-           🔝 SCROLL TOP
-        ===================================================== */
-
-        const topButton =
-            document.getElementById(
-                "topButton"
-            );
-
-        window.addEventListener(
-            "scroll",
-            () => {
-
-                if (window.scrollY > 400) {
-
-                    topButton.classList
-                        .add("show");
-
-                } else {
-
-                    topButton.classList
-                        .remove("show");
-                }
-
-            }
-        );
-
-
-        topButton.addEventListener(
-            "click",
-            () => {
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-            }
-        );
-
-
-        /* =====================================================
-           🖱️ CARD 3D TILT
+           🖱️ CARD 3D MOVEMENT
         ===================================================== */
 
         cards.forEach(
@@ -1760,27 +2260,21 @@
                             -
                             rect.top;
 
-                        const centerX =
-                            rect.width / 2;
-
-                        const centerY =
-                            rect.height / 2;
-
                         const rotateX =
-                            ((y - centerY)
+                            ((y - rect.height / 2)
                             /
-                            centerY)
-                            * -3;
+                            (rect.height / 2))
+                            * -5;
 
                         const rotateY =
-                            ((x - centerX)
+                            ((x - rect.width / 2)
                             /
-                            centerX)
-                            * 3;
+                            (rect.width / 2))
+                            * 5;
 
                         card.style.transform =
                             `
-                            translateY(-18px)
+                            translateY(-12px)
                             scale(1.025)
                             rotateX(${rotateX}deg)
                             rotateY(${rotateY}deg)
@@ -1798,99 +2292,160 @@
                     }
                 );
 
-            }
-        );
 
+                /* คลิกการ์ด */
 
-        /* =====================================================
-           ✨ TITLE LETTER EFFECT
-        ===================================================== */
+                card.addEventListener(
+                    "click",
+                    () => {
 
-        const title =
-            document.querySelector(
-                "header h1"
-            );
-
-        title.addEventListener(
-            "mouseenter",
-            () => {
-
-                title.style
-                    .textShadow =
-                    `
-                    0 0 10px white,
-                    0 0 25px #58ffe5,
-                    0 0 50px #58ffe5,
-                    0 0 90px #38d8ff
-                    `;
-            }
-        );
-
-        title.addEventListener(
-            "mouseleave",
-            () => {
-
-                title.style
-                    .textShadow = "";
-            }
-        );
-
-
-        /* =====================================================
-           🌟 RANDOM PARTICLE REACTION
-        ===================================================== */
-
-        document.addEventListener(
-            "mousemove",
-            (event) => {
-
-                if (
-                    Math.random() > .92
-                ) {
-
-                    const spark =
-                        document.createElement(
-                            "span"
+                        card.animate(
+                            [
+                                {
+                                    transform:
+                                        "scale(1)"
+                                },
+                                {
+                                    transform:
+                                        "scale(1.04)"
+                                },
+                                {
+                                    transform:
+                                        "scale(1)"
+                                }
+                            ],
+                            {
+                                duration: 450
+                            }
                         );
 
-                    spark.textContent = "✦";
+                    }
+                );
 
-                    spark.style.position =
-                        "fixed";
+            }
+        );
 
-                    spark.style.left =
-                        event.clientX + "px";
 
-                    spark.style.top =
-                        event.clientY + "px";
+        /* =====================================================
+           🔝 TOP BUTTON
+        ===================================================== */
 
-                    spark.style.color =
-                        "#9ffff2";
+        const topButton =
+            document.getElementById(
+                "topButton"
+            );
 
-                    spark.style.pointerEvents =
-                        "none";
+        window.addEventListener(
+            "scroll",
+            () => {
 
-                    spark.style.zIndex =
-                        "9998";
+                if (
+                    window.scrollY > 400
+                ) {
 
-                    spark.style.textShadow =
-                        "0 0 10px #48ffe2";
+                    topButton.classList
+                        .add("show");
 
-                    spark.style.animation =
-                        "clickSpark .8s ease-out forwards";
+                } else {
 
-                    document.body.appendChild(
-                        spark
-                    );
-
-                    setTimeout(
-                        () => spark.remove(),
-                        800
-                    );
+                    topButton.classList
+                        .remove("show");
                 }
 
             }
         );
+
+        topButton.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+        /* =====================================================
+           🎵 YOUTUBE MUSIC
+        ===================================================== */
+
+        const musicButton =
+            document.getElementById(
+                "musicButton"
+            );
+
+        const youtubeMusic =
+            document.getElementById(
+                "youtubeMusic"
+            );
+
+        let musicPlaying = false;
+
+
+        musicButton.addEventListener(
+            "click",
+            () => {
+
+                if (!musicPlaying) {
+
+                    youtubeMusic.contentWindow
+                        .postMessage(
+                            JSON.stringify({
+                                event: "command",
+                                func: "playVideo"
+                            }),
+                            "*"
+                        );
+
+                    musicButton.textContent =
+                        "⏸";
+
+                    musicPlaying = true;
+
+                } else {
+
+                    youtubeMusic.contentWindow
+                        .postMessage(
+                            JSON.stringify({
+                                event: "command",
+                                func: "pauseVideo"
+                            }),
+                            "*"
+                        );
+
+                    musicButton.textContent =
+                        "▶";
+
+                    musicPlaying = false;
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           🎵 TRY AUTO PLAY AFTER LOADING
+        ===================================================== */
+
+        setTimeout(
+            () => {
+
+                youtubeMusic.contentWindow
+                    .postMessage(
+                        JSON.stringify({
+                            event: "command",
+                            func: "playVideo"
+                        }),
+                        "*"
+                    );
+
+            },
+            3200
+        );
+
 
     </script>
 
