@@ -439,3 +439,33 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 });
+
+/* =========================================================
+   💬 ข้อความถึงคุณครู
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const message =
+        document.getElementById("teacherMessage");
+
+    if (!message) return;
+
+
+    /* ตอนแรกซ่อนไว้ */
+
+    message.style.opacity = "0";
+
+
+    /* แล้วค่อย ๆ ปรากฏ */
+
+    setTimeout(() => {
+
+        message.style.transition =
+            "opacity 1s ease";
+
+        message.style.opacity = "1";
+
+    }, 1800);
+
+});
