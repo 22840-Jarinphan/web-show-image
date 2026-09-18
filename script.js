@@ -1,137 +1,123 @@
 /* =========================================================
-   🧚 BIBBLE FLYING SYSTEM
-   Smooth + Drag + Sparkle
+   🧚 BIBBLE DRAG SYSTEM
+   ลากได้จริง + ประกาย + บินเอง
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-    const bibble = document.getElementById("floatingBibble");
-    const sparkleContainer = document.getElementById("bibble-sparkles");
+    const bibble =
+        document.getElementById("bibbleCharacter");
 
-    if (!bibble) return;
-
-
-    /* =====================================================
-       📍 ตำแหน่งเริ่มต้น
-    ===================================================== */
-
-    let x = window.innerWidth * 0.20;
-    let y = window.innerHeight * 0.35;
-
-    let targetX = x;
-    let targetY = y;
+    const effects =
+        document.getElementById("bibbleEffects");
 
 
-    /* =====================================================
-       🖱️ ระบบลาก
-    ===================================================== */
-
-    let dragging = false;
-
-    let pointerOffsetX = 0;
-    let pointerOffsetY = 0;
-
-
-    /* =====================================================
-       🌬️ ระบบบินอัตโนมัติ
-    ===================================================== */
-
-    let flying = true;
-
-    let destinationX = randomX();
-    let destinationY = randomY();
-
-    let lastSparkTime = 0;
-
-
-    function randomX() {
-
-        const maxX = window.innerWidth - bibble.offsetWidth;
-
-        return Math.random() * Math.max(50, maxX);
-
-    }
-
-
-    function randomY() {
-
-        const maxY = window.innerHeight - bibble.offsetHeight;
-
-        return Math.random() * Math.max(50, maxY);
-
+    if (!bibble) {
+        console.log("ไม่พบ Bibble");
+        return;
     }
 
 
     /* =====================================================
-       🎯 เปลี่ยนเป้าหมายการบิน
+       📍 ตัวแปรตำแหน่ง
     ===================================================== */
 
-    function chooseNewDestination() {
+    let x = 180;
+    let y = 250;
 
-        destinationX = randomX();
-        destinationY = randomY();
+    let startMouseX = 0;
+    let startMouseY = 0;
 
-    }
+    let startX = 0;
+    let startY = 0;
+
+    let isDragging = false;
+
+    let lastSpark = 0;
 
 
     /* =====================================================
-       ✨ สร้างประกาย
+       ✨ ประกาย
     ===================================================== */
 
-    function createSpark(x, y) {
+    function sparkle(x, y) {
 
-        const spark = document.createElement("span");
+        const now =
+            performance.now();
 
-        spark.className = "bibble-spark";
+        /* ป้องกันสร้างเยอะเกินไป */
+
+        if (now - lastSpark < 50) {
+            return;
+        }
+
+        lastSpark = now;
+
+
+        const spark =
+            document.createElement("span");
+
+        spark.className =
+            "bibbleSpark";
 
         const symbols = [
             "✦",
             "✧",
             "⋆",
-            "✩",
             "✨",
             "★"
         ];
 
         spark.textContent =
-            symbols[Math.floor(Math.random() * symbols.length)];
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
 
-        spark.style.left = `${x}px`;
-        spark.style.top = `${y}px`;
 
-        const size =
-            8 + Math.random() * 12;
+        spark.style.left =
+            `${x}px`;
 
-        spark.style.fontSize = `${size}px`;
+        spark.style.top =
+            `${y}px`;
 
-        sparkleContainer.appendChild(spark);
 
-        setTimeout(() => {
+        effects.appendChild(spark);
+
+
+        setTimeout(function () {
+
             spark.remove();
+
         }, 800);
 
     }
 
 
     /* =====================================================
-       💥 ประกายตอนกด
+       💥 ระเบิดประกาย
     ===================================================== */
 
-    function createBurst(x, y) {
+    function burst(x, y) {
 
         const symbols = [
             "✦",
             "✧",
             "✨",
-            "⋆"
+            "⋆",
+            "★"
         ];
 
-        for (let i = 0; i < 7; i++) {
+
+        for (let i = 0; i < 8; i++) {
 
             const spark =
                 document.createElement("span");
 
-            spark.className = "bibble-burst";
+            spark.className =
+                "bibbleBurst";
 
             spark.textContent =
                 symbols[
@@ -141,29 +127,41 @@ document.addEventListener("DOMContentLoaded", () => {
                     )
                 ];
 
-            spark.style.left = `${x}px`;
-            spark.style.top = `${y}px`;
+
+            spark.style.left =
+                `${x}px`;
+
+            spark.style.top =
+                `${y}px`;
+
 
             const angle =
-                Math.random() * Math.PI * 2;
+                Math.random() *
+                Math.PI * 2;
 
             const distance =
-                25 + Math.random() * 35;
+                25 +
+                Math.random() * 45;
+
 
             spark.style.setProperty(
-                "--move-x",
+                "--bx",
                 `${Math.cos(angle) * distance}px`
             );
 
             spark.style.setProperty(
-                "--move-y",
+                "--by",
                 `${Math.sin(angle) * distance}px`
             );
 
-            sparkleContainer.appendChild(spark);
 
-            setTimeout(() => {
+            effects.appendChild(spark);
+
+
+            setTimeout(function () {
+
                 spark.remove();
+
             }, 700);
 
         }
@@ -172,314 +170,272 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       🖱️ POINTER DOWN
+       🖱️ เริ่มลาก
     ===================================================== */
 
-    bibble.addEventListener("pointerdown", (event) => {
+    bibble.addEventListener(
+        "pointerdown",
+        function (event) {
 
-        dragging = true;
-        flying = false;
+            event.preventDefault();
 
-        bibble.classList.add("dragging");
+            isDragging = true;
 
-        bibble.setPointerCapture(event.pointerId);
-
-        const rect =
-            bibble.getBoundingClientRect();
-
-        pointerOffsetX =
-            event.clientX - rect.left;
-
-        pointerOffsetY =
-            event.clientY - rect.top;
-
-        targetX = rect.left;
-        targetY = rect.top;
-
-        createBurst(
-            event.clientX,
-            event.clientY
-        );
-
-    });
-
-
-    /* =====================================================
-       🖱️ POINTER MOVE
-    ===================================================== */
-
-    bibble.addEventListener("pointermove", (event) => {
-
-        if (!dragging) return;
-
-
-        targetX =
-            event.clientX -
-            pointerOffsetX;
-
-        targetY =
-            event.clientY -
-            pointerOffsetY;
-
-
-        /* จำกัดไม่ให้ออกนอกจอ */
-
-        const maxX =
-            window.innerWidth -
-            bibble.offsetWidth;
-
-        const maxY =
-            window.innerHeight -
-            bibble.offsetHeight;
-
-        targetX =
-            Math.max(
-                0,
-                Math.min(targetX, maxX)
-            );
-
-        targetY =
-            Math.max(
-                0,
-                Math.min(targetY, maxY)
+            bibble.classList.add(
+                "dragging"
             );
 
 
-        /* =================================================
-           ✨ สร้างประกายตามการลาก
-        ================================================= */
+            startMouseX =
+                event.clientX;
 
-        const now =
-            performance.now();
+            startMouseY =
+                event.clientY;
 
-        if (now - lastSparkTime > 55) {
 
-            createSpark(
-                event.clientX +
-                (Math.random() * 20 - 10),
+            startX = x;
+            startY = y;
 
-                event.clientY +
-                (Math.random() * 20 - 10)
+
+            /* ให้จับ pointer ต่อเนื่อง */
+
+            try {
+
+                bibble.setPointerCapture(
+                    event.pointerId
+                );
+
+            } catch (error) {}
+
+
+            burst(
+                event.clientX,
+                event.clientY
             );
-
-            lastSparkTime = now;
 
         }
-
-    });
-
-
-    /* =====================================================
-       🖱️ POINTER UP
-    ===================================================== */
-
-    bibble.addEventListener("pointerup", (event) => {
-
-        if (!dragging) return;
-
-        dragging = false;
-
-        bibble.classList.remove("dragging");
-
-        flying = true;
-
-        chooseNewDestination();
-
-        createBurst(
-            event.clientX,
-            event.clientY
-        );
-
-    });
+    );
 
 
     /* =====================================================
-       🖱️ POINTER CANCEL
+       🖱️ ลาก
     ===================================================== */
 
-    bibble.addEventListener("pointercancel", () => {
+    bibble.addEventListener(
+        "pointermove",
+        function (event) {
 
-        dragging = false;
-
-        bibble.classList.remove("dragging");
-
-        flying = true;
-
-        chooseNewDestination();
-
-    });
+            if (!isDragging) {
+                return;
+            }
 
 
-    /* =====================================================
-       🌟 ANIMATION LOOP
-    ===================================================== */
-
-    function animate() {
-
-        /* ================================================
-           ถ้ากำลังบินเอง
-        ================================================ */
-
-        if (flying && !dragging) {
-
-            const dx =
-                destinationX - x;
-
-            const dy =
-                destinationY - y;
+            event.preventDefault();
 
 
-            const distance =
-                Math.sqrt(
-                    dx * dx +
-                    dy * dy
+            const moveX =
+                event.clientX -
+                startMouseX;
+
+            const moveY =
+                event.clientY -
+                startMouseY;
+
+
+            x =
+                startX +
+                moveX;
+
+            y =
+                startY +
+                moveY;
+
+
+            /* =============================================
+               จำกัดไม่ให้ออกนอกหน้าจอ
+            ============================================= */
+
+            const maxX =
+                window.innerWidth -
+                bibble.offsetWidth;
+
+            const maxY =
+                window.innerHeight -
+                bibble.offsetHeight;
+
+
+            x =
+                Math.max(
+                    0,
+                    Math.min(x, maxX)
                 );
 
 
-            /* ถึงเป้าหมายแล้ว */
-
-            if (distance < 8) {
-
-                chooseNewDestination();
-
-            } else {
-
-                /*
-                   ความเร็วแบบ Smooth
-                */
-
-                const speed = 0.018;
-
-                x += dx * speed;
-                y += dy * speed;
+            y =
+                Math.max(
+                    0,
+                    Math.min(y, maxY)
+                );
 
 
-                /* ========================================
-                   ✨ ประกายตามท้ายตัวละคร
-                ======================================== */
+            /* =============================================
+               ย้ายตัวละคร
+            ============================================= */
 
-                const now =
-                    performance.now();
+            bibble.style.left =
+                `${x}px`;
 
-                if (now - lastSparkTime > 130) {
+            bibble.style.top =
+                `${y}px`;
 
-                    createSpark(
-                        x +
-                        bibble.offsetWidth *
-                        (0.25 + Math.random() * 0.5),
 
-                        y +
-                        bibble.offsetHeight *
-                        (0.6 + Math.random() * 0.25)
-                    );
+            /* =============================================
+               ✨ ประกายตามหลัง
+            ============================================= */
 
-                    lastSparkTime = now;
+            sparkle(
+                x +
+                bibble.offsetWidth * 0.5,
 
-                }
+                y +
+                bibble.offsetHeight * 0.7
+            );
 
-            }
+        }
+    );
 
+
+    /* =====================================================
+       🖱️ ปล่อยเมาส์
+    ===================================================== */
+
+    function stopDragging(event) {
+
+        if (!isDragging) {
+            return;
         }
 
 
-        /* ================================================
-           ถ้ากำลังลาก
-        ================================================ */
+        isDragging = false;
 
-        if (dragging) {
-
-            /*
-               Smooth ตามเมาส์
-            */
-
-            x +=
-                (targetX - x) *
-                0.28;
-
-            y +=
-                (targetY - y) *
-                0.28;
-
-        }
+        bibble.classList.remove(
+            "dragging"
+        );
 
 
-        /* ================================================
-           จำกัดพื้นที่
-        ================================================ */
-
-        const maxX =
-            window.innerWidth -
-            bibble.offsetWidth;
-
-        const maxY =
-            window.innerHeight -
-            bibble.offsetHeight;
-
-
-        x =
-            Math.max(
-                0,
-                Math.min(x, maxX)
-            );
-
-        y =
-            Math.max(
-                0,
-                Math.min(y, maxY)
-            );
-
-
-        /* ================================================
-           เคลื่อนที่
-        ================================================ */
-
-        bibble.style.left =
-            `${x}px`;
-
-        bibble.style.top =
-            `${y}px`;
-
-
-        requestAnimationFrame(animate);
+        burst(
+            event.clientX,
+            event.clientY
+        );
 
     }
 
 
-    animate();
+    bibble.addEventListener(
+        "pointerup",
+        stopDragging
+    );
+
+
+    bibble.addEventListener(
+        "pointercancel",
+        stopDragging
+    );
 
 
     /* =====================================================
-       📐 เมื่อปรับขนาดหน้าจอ
+       📱 ป้องกันลากรูปแบบปกติของ Browser
     ===================================================== */
 
-    window.addEventListener("resize", () => {
+    bibble.addEventListener(
+        "dragstart",
+        function (event) {
 
-        const maxX =
-            window.innerWidth -
-            bibble.offsetWidth;
+            event.preventDefault();
 
-        const maxY =
-            window.innerHeight -
-            bibble.offsetHeight;
+        }
+    );
 
 
-        x =
-            Math.max(
-                0,
-                Math.min(x, maxX)
+    /* =====================================================
+       ✨ ทดสอบประกายเบา ๆ
+    ===================================================== */
+
+    setInterval(function () {
+
+        if (!isDragging) {
+
+            const rect =
+                bibble.getBoundingClientRect();
+
+            sparkle(
+                rect.left +
+                Math.random() *
+                rect.width,
+
+                rect.top +
+                Math.random() *
+                rect.height
             );
 
-        y =
-            Math.max(
-                0,
-                Math.min(y, maxY)
-            );
+        }
 
-        targetX = x;
-        targetY = y;
+    }, 900);
 
-        chooseNewDestination();
 
-    });
+    /* =====================================================
+       📐 ปรับเมื่อเปลี่ยนขนาดหน้าจอ
+    ===================================================== */
+
+    window.addEventListener(
+        "resize",
+        function () {
+
+            const maxX =
+                window.innerWidth -
+                bibble.offsetWidth;
+
+            const maxY =
+                window.innerHeight -
+                bibble.offsetHeight;
+
+
+            x =
+                Math.max(
+                    0,
+                    Math.min(x, maxX)
+                );
+
+            y =
+                Math.max(
+                    0,
+                    Math.min(y, maxY)
+                );
+
+
+            bibble.style.left =
+                `${x}px`;
+
+            bibble.style.top =
+                `${y}px`;
+
+        }
+    );
+
+
+    /* =====================================================
+       🚀 แสดงตำแหน่งเริ่มต้น
+    ===================================================== */
+
+    bibble.style.left =
+        `${x}px`;
+
+    bibble.style.top =
+        `${y}px`;
+
+
+    console.log(
+        "🧚 Bibble Drag System พร้อมใช้งาน!"
+    );
 
 });
