@@ -220,3 +220,28 @@
     }
 
 }
+
+#bibbleCharacter {
+    position: fixed;
+
+    left: 180px;
+    top: 250px;
+
+    width: 150px;
+    height: 150px;
+
+    z-index: 2147483647;
+
+    cursor: grab;
+    pointer-events: auto;
+
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+
+    filter:
+        drop-shadow(0 0 8px white)
+        drop-shadow(0 0 18px #83fff2);
+
+    will-change: left, top;
+}
