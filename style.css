@@ -1,51 +1,43 @@
 /* =========================================================
-   🧚 BIBBLE FLYING CHARACTER
-   - บินไปมา
-   - ลากได้
-   - มีประกาย
-   - Smooth Animation
+   🧚 BIBBLE DRAGGABLE CHARACTER
 ========================================================= */
 
-#bibble-fly-zone {
+#bibbleCharacter {
     position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 9990;
-}
 
-/* ตัว Bibble */
-#floatingBibble {
-    position: absolute;
+    left: 180px;
+    top: 250px;
 
-    width: 145px;
-    height: 145px;
+    width: 150px;
+    height: 150px;
 
-    left: 20%;
-    top: 35%;
+    z-index: 2147483647;
 
-    pointer-events: auto;
     cursor: grab;
 
     user-select: none;
+    -webkit-user-select: none;
+
     touch-action: none;
 
-    will-change: transform, left, top;
-
-    filter:
-        drop-shadow(0 0 8px rgba(255,255,255,.85))
-        drop-shadow(0 0 18px rgba(112,255,235,.65));
-
-    transform-origin: center center;
+    /* สำคัญมาก */
+    pointer-events: auto;
 
     transition:
-        filter .25s ease;
+        filter 0.2s ease;
+
+    filter:
+        drop-shadow(0 0 8px rgba(255,255,255,0.9))
+        drop-shadow(0 0 18px rgba(100,255,240,0.8));
+
+    /* ทำให้เบาและลื่น */
+    will-change: left, top;
 }
 
-/* รูป */
-#floatingBibble img {
+
+/* รูป Bibble */
+#bibbleCharacter img {
+
     width: 100%;
     height: 100%;
 
@@ -54,55 +46,34 @@
     display: block;
 
     pointer-events: none;
+
     user-select: none;
 
     -webkit-user-drag: none;
 
-    animation: bibbleBreathing 2.8s ease-in-out infinite;
 }
 
-/* ตอนเอาเมาส์ไปโดน */
-#floatingBibble:hover {
+
+/* เมาส์ชี้ */
+#bibbleCharacter:hover {
+
     filter:
         drop-shadow(0 0 10px white)
-        drop-shadow(0 0 25px #7ffff1)
-        drop-shadow(0 0 40px rgba(255,255,255,.75));
+        drop-shadow(0 0 25px #8ffff5)
+        drop-shadow(0 0 40px rgba(255,255,255,0.9));
 
-    transform: scale(1.08);
 }
 
+
 /* ตอนกำลังลาก */
-#floatingBibble.dragging {
+#bibbleCharacter.dragging {
+
     cursor: grabbing;
 
     filter:
         drop-shadow(0 0 12px white)
-        drop-shadow(0 0 25px #9ffff5)
-        drop-shadow(0 0 45px #ffffff);
-}
-
-#floatingBibble.dragging img {
-    animation: none;
-}
-
-
-/* =========================================================
-   🌬️ การขยับเบา ๆ ของตัวละคร
-========================================================= */
-
-@keyframes bibbleBreathing {
-
-    0% {
-        transform: translateY(0) rotate(-2deg);
-    }
-
-    50% {
-        transform: translateY(-7px) rotate(2deg);
-    }
-
-    100% {
-        transform: translateY(0) rotate(-2deg);
-    }
+        drop-shadow(0 0 25px #7ffff2)
+        drop-shadow(0 0 45px white);
 
 }
 
@@ -111,112 +82,141 @@
    ✨ ประกาย
 ========================================================= */
 
-#bibble-sparkles {
+#bibbleEffects {
+
     position: fixed;
+
     inset: 0;
 
     pointer-events: none;
 
-    z-index: 9995;
+    z-index: 2147483646;
 
     overflow: hidden;
+
 }
 
-.bibble-spark {
-    position: fixed;
 
-    width: 7px;
-    height: 7px;
+.bibbleSpark {
+
+    position: fixed;
 
     pointer-events: none;
 
     color: white;
 
-    font-size: 14px;
+    font-size: 18px;
+
+    line-height: 1;
 
     text-shadow:
         0 0 5px white,
-        0 0 12px #8ffff4,
-        0 0 22px #ffffff;
+        0 0 10px #8ffff5,
+        0 0 20px #6ffff0;
 
-    animation: bibbleSpark .8s ease-out forwards;
+    animation:
+        bibbleSparkMove 0.8s ease-out forwards;
 
-    will-change: transform, opacity;
 }
 
-@keyframes bibbleSpark {
+
+@keyframes bibbleSparkMove {
 
     0% {
-        opacity: 0;
+
+        opacity: 1;
+
         transform:
-            scale(.2)
+            scale(0.4)
             rotate(0deg);
+
     }
 
-    20% {
+    40% {
+
         opacity: 1;
+
         transform:
-            scale(1.3)
-            rotate(45deg);
+            scale(1.2)
+            rotate(60deg);
+
     }
 
     100% {
+
         opacity: 0;
+
         transform:
-            translateY(-25px)
-            scale(.1)
+            translateY(-35px)
+            scale(0)
             rotate(180deg);
+
     }
 
 }
 
 
 /* =========================================================
-   ✦ ประกายพิเศษตอนเริ่มลาก
+   💥 ประกายตอนกดลาก
 ========================================================= */
 
-.bibble-burst {
+.bibbleBurst {
+
     position: fixed;
 
     pointer-events: none;
 
-    font-size: 18px;
+    color: white;
 
-    z-index: 10000;
+    font-size: 20px;
 
-    animation: bibbleBurst .7s ease-out forwards;
+    text-shadow:
+        0 0 6px white,
+        0 0 15px #8ffff5;
+
+    animation:
+        bibbleBurstMove 0.65s ease-out forwards;
+
 }
 
-@keyframes bibbleBurst {
+
+@keyframes bibbleBurstMove {
 
     0% {
+
         opacity: 1;
-        transform: scale(.2) rotate(0deg);
+
+        transform:
+            translate(0,0)
+            scale(0.3);
+
     }
 
     100% {
+
         opacity: 0;
+
         transform:
-            scale(1.8)
-            translate(
-                var(--move-x),
-                var(--move-y)
-            )
-            rotate(180deg);
+            translate(var(--bx),var(--by))
+            scale(1.4);
+
     }
 
 }
 
 
-/* =========================================================
-   📱 มือถือ
-========================================================= */
+/* มือถือ */
 
 @media (max-width: 768px) {
 
-    #floatingBibble {
+    #bibbleCharacter {
+
         width: 110px;
         height: 110px;
+
+        left: 80px;
+        top: 180px;
+
     }
 
 }
