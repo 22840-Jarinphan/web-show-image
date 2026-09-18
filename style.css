@@ -1,247 +1,199 @@
 /* =========================================================
-   🧚 BIBBLE DRAGGABLE CHARACTER
+   💬 BIBBLE พูดกับคุณครู
 ========================================================= */
 
-#bibbleCharacter {
+#teacherMessage {
     position: fixed;
 
-    left: 180px;
-    top: 250px;
+    left: 315px;
+    bottom: 95px;
 
-    width: 150px;
-    height: 150px;
-
-    z-index: 2147483647;
-
-    cursor: grab;
-
-    user-select: none;
-    -webkit-user-select: none;
-
-    touch-action: none;
-
-    /* สำคัญมาก */
-    pointer-events: auto;
-
-    transition:
-        filter 0.2s ease;
-
-    filter:
-        drop-shadow(0 0 8px rgba(255,255,255,0.9))
-        drop-shadow(0 0 18px rgba(100,255,240,0.8));
-
-    /* ทำให้เบาและลื่น */
-    will-change: left, top;
-}
-
-
-/* รูป Bibble */
-#bibbleCharacter img {
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-
-    display: block;
+    z-index: 2147483640;
 
     pointer-events: none;
 
-    user-select: none;
+    animation:
+        teacherMessageFloat 3s ease-in-out infinite;
+}
 
-    -webkit-user-drag: none;
+
+/* กล่องคำพูด */
+
+.speech-bubble {
+
+    position: relative;
+
+    min-width: 270px;
+
+    padding: 18px 25px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(205,255,247,.96),
+            rgba(180,240,255,.94)
+        );
+
+    border: 2px solid rgba(255,255,255,.9);
+
+    color: #064d52;
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    line-height: 1.7;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.8),
+        0 0 25px rgba(93,255,235,.55),
+        0 10px 35px rgba(0,0,0,.25);
+
+    backdrop-filter: blur(10px);
 
 }
 
 
-/* เมาส์ชี้ */
-#bibbleCharacter:hover {
+/* หางของกล่องพูด */
 
-    filter:
-        drop-shadow(0 0 10px white)
-        drop-shadow(0 0 25px #8ffff5)
-        drop-shadow(0 0 40px rgba(255,255,255,0.9));
+.speech-bubble::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: -15px;
+    bottom: 20px;
+
+    width: 30px;
+    height: 30px;
+
+    background: #cffff8;
+
+    transform: rotate(45deg);
+
+    border-left: 2px solid rgba(255,255,255,.8);
+    border-bottom: 2px solid rgba(255,255,255,.8);
 
 }
 
 
-/* ตอนกำลังลาก */
-#bibbleCharacter.dragging {
+/* หัวใจ */
 
-    cursor: grabbing;
+.bubble-heart {
 
-    filter:
-        drop-shadow(0 0 12px white)
-        drop-shadow(0 0 25px #7ffff2)
-        drop-shadow(0 0 45px white);
+    display: inline-block;
+
+    animation:
+        bubbleHeart 1.2s ease-in-out infinite;
+
+}
+
+
+@keyframes bubbleHeart {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+}
+
+
+/* กล่องลอยขึ้นลง */
+
+@keyframes teacherMessageFloat {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(-1deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotate(1deg);
+    }
 
 }
 
 
 /* =========================================================
-   ✨ ประกาย
+   ✨ ประกายรอบข้อความ
 ========================================================= */
 
-#bibbleEffects {
+.message-sparkle {
 
-    position: fixed;
+    position: absolute;
 
-    inset: 0;
-
-    pointer-events: none;
-
-    z-index: 2147483646;
-
-    overflow: hidden;
-
-}
-
-
-.bibbleSpark {
-
-    position: fixed;
-
-    pointer-events: none;
+    top: -20px;
+    right: 5px;
 
     color: white;
 
-    font-size: 18px;
-
-    line-height: 1;
+    font-size: 25px;
 
     text-shadow:
         0 0 5px white,
-        0 0 10px #8ffff5,
-        0 0 20px #6ffff0;
+        0 0 15px #7ffff3,
+        0 0 30px #7ffff3;
 
     animation:
-        bibbleSparkMove 0.8s ease-out forwards;
+        messageSparkle 1.5s ease-in-out infinite;
 
 }
 
 
-@keyframes bibbleSparkMove {
+@keyframes messageSparkle {
 
-    0% {
-
-        opacity: 1;
-
-        transform:
-            scale(0.4)
-            rotate(0deg);
-
+    0%, 100% {
+        opacity: .4;
+        transform: scale(.7) rotate(0deg);
     }
 
-    40% {
-
+    50% {
         opacity: 1;
-
-        transform:
-            scale(1.2)
-            rotate(60deg);
-
-    }
-
-    100% {
-
-        opacity: 0;
-
-        transform:
-            translateY(-35px)
-            scale(0)
-            rotate(180deg);
-
+        transform: scale(1.3) rotate(90deg);
     }
 
 }
 
 
 /* =========================================================
-   💥 ประกายตอนกดลาก
+   📱 โทรศัพท์
 ========================================================= */
-
-.bibbleBurst {
-
-    position: fixed;
-
-    pointer-events: none;
-
-    color: white;
-
-    font-size: 20px;
-
-    text-shadow:
-        0 0 6px white,
-        0 0 15px #8ffff5;
-
-    animation:
-        bibbleBurstMove 0.65s ease-out forwards;
-
-}
-
-
-@keyframes bibbleBurstMove {
-
-    0% {
-
-        opacity: 1;
-
-        transform:
-            translate(0,0)
-            scale(0.3);
-
-    }
-
-    100% {
-
-        opacity: 0;
-
-        transform:
-            translate(var(--bx),var(--by))
-            scale(1.4);
-
-    }
-
-}
-
-
-/* มือถือ */
 
 @media (max-width: 768px) {
 
-    #bibbleCharacter {
+    #teacherMessage {
 
-        width: 110px;
-        height: 110px;
+        left: 50%;
 
-        left: 80px;
-        top: 180px;
+        bottom: 90px;
+
+        transform:
+            translateX(-50%);
 
     }
 
-}
+    .speech-bubble {
 
-#bibbleCharacter {
-    position: fixed;
+        min-width: 230px;
 
-    left: 180px;
-    top: 250px;
+        max-width: 280px;
 
-    width: 150px;
-    height: 150px;
+        padding: 14px 18px;
 
-    z-index: 2147483647;
+        font-size: 14px;
 
-    cursor: grab;
-    pointer-events: auto;
+    }
 
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: none;
-
-    filter:
-        drop-shadow(0 0 8px white)
-        drop-shadow(0 0 18px #83fff2);
-
-    will-change: left, top;
 }
