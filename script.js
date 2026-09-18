@@ -164,3 +164,188 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+
+/* =========================================================
+   🌌 SERVAMP AURORA EXTRA EFFECTS
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =====================================================
+       ✨ RANDOM MAGIC STARS
+    ===================================================== */
+
+    const starContainer = document.createElement("div");
+
+    starContainer.className = "magic-stars";
+
+    document.body.appendChild(starContainer);
+
+
+    const starSymbols = [
+        "✦",
+        "✧",
+        "⋆",
+        "✶",
+        "◇",
+        "✹"
+    ];
+
+
+    for (let i = 0; i < 28; i++) {
+
+        const star = document.createElement("span");
+
+        star.className = "magic-star";
+
+        star.textContent =
+            starSymbols[
+                Math.floor(Math.random() * starSymbols.length)
+            ];
+
+        star.style.left =
+            Math.random() * 100 + "%";
+
+        star.style.top =
+            Math.random() * 100 + "%";
+
+        star.style.fontSize =
+            (8 + Math.random() * 18) + "px";
+
+        star.style.animationDelay =
+            (Math.random() * 5) + "s";
+
+        star.style.animationDuration =
+            (3 + Math.random() * 5) + "s";
+
+        starContainer.appendChild(star);
+    }
+
+
+    /* =====================================================
+       🍃 FLOATING LEAVES
+    ===================================================== */
+
+    const leafContainer = document.createElement("div");
+
+    leafContainer.className = "floating-leaves";
+
+    document.body.appendChild(leafContainer);
+
+
+    const leaves = [
+        "🍃",
+        "🌿",
+        "☘️",
+        "🌱"
+    ];
+
+
+    for (let i = 0; i < 18; i++) {
+
+        const leaf = document.createElement("span");
+
+        leaf.className = "floating-leaf";
+
+        leaf.textContent =
+            leaves[
+                Math.floor(Math.random() * leaves.length)
+            ];
+
+        leaf.style.left =
+            Math.random() * 100 + "%";
+
+        leaf.style.fontSize =
+            (14 + Math.random() * 20) + "px";
+
+        leaf.style.animationDuration =
+            (8 + Math.random() * 10) + "s";
+
+        leaf.style.animationDelay =
+            (Math.random() * 8) + "s";
+
+        leafContainer.appendChild(leaf);
+    }
+
+
+    /* =====================================================
+       💎 LIGHT DUST
+    ===================================================== */
+
+    const dustContainer = document.createElement("div");
+
+    dustContainer.className = "light-dust";
+
+    document.body.appendChild(dustContainer);
+
+
+    for (let i = 0; i < 35; i++) {
+
+        const dust = document.createElement("span");
+
+        dust.className = "dust";
+
+        dust.style.left =
+            Math.random() * 100 + "%";
+
+        dust.style.top =
+            Math.random() * 100 + "%";
+
+        dust.style.animationDelay =
+            Math.random() * 5 + "s";
+
+        dust.style.animationDuration =
+            (2 + Math.random() * 4) + "s";
+
+        dustContainer.appendChild(dust);
+    }
+
+
+    /* =====================================================
+       🃏 3D CARD TILT
+    ===================================================== */
+
+    document.querySelectorAll(".card").forEach(card => {
+
+        card.addEventListener("mousemove", event => {
+
+            const rect =
+                card.getBoundingClientRect();
+
+            const x =
+                event.clientX - rect.left;
+
+            const y =
+                event.clientY - rect.top;
+
+            const centerX =
+                rect.width / 2;
+
+            const centerY =
+                rect.height / 2;
+
+            const rotateX =
+                ((y - centerY) / centerY) * -4;
+
+            const rotateY =
+                ((x - centerX) / centerX) * 4;
+
+            card.style.transform =
+                `perspective(900px)
+                 translateY(-12px)
+                 scale(1.03)
+                 rotateX(${rotateX}deg)
+                 rotateY(${rotateY}deg)`;
+        });
+
+
+        card.addEventListener("mouseleave", () => {
+
+            card.style.transform = "";
+
+        });
+
+    });
+
+});
