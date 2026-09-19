@@ -882,3 +882,244 @@
     }
 
 }
+
+/* =========================================================
+   🌟 BIG CLICKABLE EMOJI
+========================================================= */
+
+#bigEmojiDecor {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99980;
+
+    pointer-events: none;
+
+}
+
+
+.bigEmoji {
+
+    position: absolute;
+
+    width: 72px;
+    height: 72px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 42px;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    background:
+        rgba(255,255,255,.10);
+
+    backdrop-filter: blur(7px);
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.4),
+        0 0 25px rgba(100,255,240,.3);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+
+    animation:
+        emojiFloat 3s ease-in-out infinite;
+
+}
+
+
+.bigEmoji:hover {
+
+    transform:
+        scale(1.25)
+        rotate(10deg);
+
+    box-shadow:
+        0 0 15px white,
+        0 0 35px #7ffff2,
+        0 0 55px rgba(255,255,255,.7);
+
+}
+
+
+.bigEmoji:active {
+
+    transform:
+        scale(.8);
+
+}
+
+
+/* ตำแหน่ง */
+
+.emoji1 {
+
+    top: 170px;
+    left: 35px;
+
+    animation-delay: 0s;
+
+}
+
+
+.emoji2 {
+
+    top: 320px;
+    right: 40px;
+
+    animation-delay: .7s;
+
+}
+
+
+.emoji3 {
+
+    bottom: 170px;
+    right: 80px;
+
+    animation-delay: 1.3s;
+
+}
+
+
+.emoji4 {
+
+    bottom: 150px;
+    left: 390px;
+
+    animation-delay: 1.9s;
+
+}
+
+
+@keyframes emojiFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0)
+            rotate(-4deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-13px)
+            rotate(5deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   💬 ข้อความจากอิโมจิ
+========================================================= */
+
+#emojiMessage {
+
+    position: fixed;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.7);
+
+    z-index: 999999;
+
+    padding: 15px 25px;
+
+    border-radius: 30px;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            120deg,
+            #087f83,
+            #20bca9,
+            #6c55d9,
+            #087f83
+        );
+
+    background-size: 300% 300%;
+
+    animation:
+        emojiPopup .7s ease forwards,
+        popupGradient 4s ease infinite;
+
+    box-shadow:
+        0 0 15px white,
+        0 0 35px #70fff2;
+
+    pointer-events: none;
+
+}
+
+
+@keyframes emojiPopup {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.5);
+
+    }
+
+    70% {
+
+        transform:
+            translate(-50%,-50%)
+            scale(1.1);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+
+    }
+
+}
+
+
+@keyframes popupGradient {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
