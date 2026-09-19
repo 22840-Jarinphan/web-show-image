@@ -469,3 +469,171 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1800);
 
 });
+
+/* =========================================================
+   🌟 BIG EMOJI CLICK EFFECT
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const emojis =
+        document.querySelectorAll(".bigEmoji");
+
+    const message =
+        document.getElementById("emojiMessage");
+
+
+    if (!emojis.length || !message) return;
+
+
+    emojis.forEach((emoji) => {
+
+        emoji.addEventListener("click", () => {
+
+            /* ข้อความ */
+
+            message.textContent =
+                emoji.dataset.text;
+
+
+            /* แสดง */
+
+            message.style.display =
+                "block";
+
+
+            message.style.animation =
+                "none";
+
+
+            void message.offsetWidth;
+
+
+            message.style.animation =
+                "emojiPopup .7s ease forwards, popupGradient 4s ease infinite";
+
+
+            /* ✨ สร้างประกาย */
+
+            const rect =
+                emoji.getBoundingClientRect();
+
+
+            for (let i = 0; i < 12; i++) {
+
+                const spark =
+                    document.createElement("span");
+
+                spark.textContent =
+                    ["✦","✧","✨","⋆","★"][
+                        Math.floor(
+                            Math.random() * 5
+                        )
+                    ];
+
+                spark.style.position =
+                    "fixed";
+
+                spark.style.left =
+                    `${rect.left + rect.width / 2}px`;
+
+                spark.style.top =
+                    `${rect.top + rect.height / 2}px`;
+
+                spark.style.color =
+                    "white";
+
+                spark.style.fontSize =
+                    `${12 + Math.random() * 15}px`;
+
+                spark.style.pointerEvents =
+                    "none";
+
+                spark.style.zIndex =
+                    "999999";
+
+
+                const angle =
+                    Math.random() *
+                    Math.PI * 2;
+
+                const distance =
+                    40 +
+                    Math.random() * 70;
+
+
+                spark.animate(
+
+                    [
+                        {
+                            opacity: 1,
+
+                            transform:
+                                "translate(-50%,-50%) scale(.4)"
+                        },
+
+                        {
+                            opacity: 0,
+
+                            transform:
+                                `translate(
+                                    ${Math.cos(angle) * distance}px,
+                                    ${Math.sin(angle) * distance}px
+                                )
+                                scale(1.5)`
+                        }
+                    ],
+
+                    {
+                        duration: 800,
+                        easing: "ease-out"
+                    }
+
+                );
+
+
+                document.body.appendChild(spark);
+
+
+                setTimeout(() => {
+
+                    spark.remove();
+
+                }, 850);
+
+            }
+
+
+            /* ซ่อนข้อความ */
+
+            clearTimeout(
+                window.emojiMessageTimer
+            );
+
+
+            window.emojiMessageTimer =
+                setTimeout(() => {
+
+                    message.style.opacity =
+                        "0";
+
+                    message.style.transition =
+                        "opacity .5s ease";
+
+                    setTimeout(() => {
+
+                        message.style.display =
+                            "none";
+
+                        message.style.opacity =
+                            "1";
+
+                    }, 500);
+
+                }, 2200);
+
+        });
+
+    });
+
+});
